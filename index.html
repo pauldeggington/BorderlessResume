@@ -846,9 +846,9 @@
                 structure
                 for wherever you're going next.
             </p>
-            <form class="waitlist-form" onsubmit="handleSubmit(event)">
+            <form class="waitlist-form" id="form-section">
                 <input type="email" id="email" placeholder="your@email.com" required>
-                <button type="submit" id="submit-btn" class="btn-primary">Join Waitlist</button>
+                <button type="submit" id="submit-btn" class="btn-primary" onclick="submitEmail()">Join Waitlist</button>
             </form>
             <p class="form-note"><span>847 South Asian professionals</span> already on the list · Free early access</p>
         </div>
@@ -1044,7 +1044,7 @@
                     </div>
                     <div class="compare-row">
                         <div>Multi-country formats</div>
-                        <div class="check" style="text-align:center">✓ 7 countries</div>
+                        <div class="check" style="text-align:center">✓ 7+ countries</div>
                         <div class="cross" style="text-align:center">US-focused</div>
                     </div>
                     <div class="compare-row">
@@ -1054,7 +1054,7 @@
                     </div>
                     <div class="compare-row">
                         <div>India-friendly pricing</div>
-                        <div class="check" style="text-align:center">✓ from $4.99</div>
+                        <div class="check" style="text-align:center">✓</div>
                         <div class="cross" style="text-align:center">$20–26/mo</div>
                     </div>
                     <div class="compare-row">
@@ -1098,14 +1098,14 @@
     </section>
 
     <!-- BOTTOM CTA -->
-    <section class="cta-section" id="waitlist">
+    <section class="cta-section" id="waitlist" id="form-section">
         <h2>Be first when we launch.</h2>
         <p>We're putting the finishing touches on BorderlessResume. Join the waitlist and get free early access — plus
             our guide: <em>"How to present your South Asian credentials to foreign recruiters."</em></p>
-        <form class="waitlist-form-2" onsubmit="handleSubmit(event)">
+        <form class="waitlist-form-2">
             <input type="email" id="email" placeholder="your@email.com" required
                 style="flex:1;padding:14px 18px;border:1.5px solid var(--border);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:0.95rem;background:white;color:var(--text);outline:none;">
-            <button type="submit" id="submit-btn" class="btn-primary">Join Waitlist</button>
+            <button type="submit" id="submit-btn" class="btn-primary" onclick="submitEmail()">Join Waitlist</button>
         </form>
         <p style="font-size:0.8rem;color:var(--muted);">No spam. Unsubscribe any time. Free early access for waitlist
             members.</p>
