@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BorderlessResume — Your South Asian CV, Rebuilt for the World</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --navy: #0F1E35;
+            --teal: #0A9396;
+            --teal2: #94D2BD;
+            --cream: #FAF7F2;
+            --sand: #E9C46A;
+            --rust: #CA6702;
+            --text: #1C2B3A;
+            --muted: #5E7080;
+            --border: #D8E4EC;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* ─── NAV ─── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 40px;
+            background: rgba(250, 247, 242, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-family: 'Fraunces', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--navy);
+            letter-spacing: -0.02em;
+        }
+
+        .logo span {
+            color: var(--teal);
+        }
+
+        nav a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color .2s;
+        }
+
+        nav a:hover {
+            color: var(--teal);
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            padding: 120px 80px 80px;
+            gap: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 70% 60% at 80% 40%, rgba(10, 147, 150, 0.08) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 50% at 20% 80%, rgba(233, 196, 106, 0.12) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(10, 147, 150, 0.1);
+            border: 1px solid rgba(10, 147, 150, 0.25);
+            color: var(--teal);
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border-radius: 100px;
+            margin-bottom: 24px;
+            animation: fadeUp .6s ease both;
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--teal);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        h1 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2.6rem, 4vw, 3.8rem);
+            font-weight: 700;
+            line-height: 1.12;
+            letter-spacing: -0.03em;
+            color: var(--navy);
+            margin-bottom: 24px;
+            animation: fadeUp .6s .1s ease both;
+        }
+
+        h1 em {
+            font-style: italic;
+            color: var(--teal);
+        }
+
+        h1 .underline-sand {
+            position: relative;
+            display: inline-block;
+        }
+
+        h1 .underline-sand::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            right: 0;
+            height: 4px;
+            background: var(--sand);
+            border-radius: 2px;
+        }
+
+        .hero-sub {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--muted);
+            max-width: 480px;
+            margin-bottom: 36px;
+            animation: fadeUp .6s .2s ease both;
+        }
+
+        .hero-sub strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        /* ─── WAITLIST FORM ─── */
+        .waitlist-form {
+            display: flex;
+            gap: 10px;
+            animation: fadeUp .6s .3s ease both;
+        }
+
+        .waitlist-form input {
+            flex: 1;
+            padding: 14px 18px;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            background: white;
+            color: var(--text);
+            outline: none;
+            transition: border-color .2s, box-shadow .2s;
+        }
+
+        .waitlist-form input:focus {
+            border-color: var(--teal);
+            box-shadow: 0 0 0 3px rgba(10, 147, 150, 0.12);
+        }
+
+        .waitlist-form input::placeholder {
+            color: #9BB0C0;
+        }
+
+        .btn-primary {
+            padding: 14px 24px;
+            background: var(--navy);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background .2s, transform .15s;
+        }
+
+        .btn-primary:hover {
+            background: var(--teal);
+            transform: translateY(-1px);
+        }
+
+        .form-note {
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: var(--muted);
+            animation: fadeUp .6s .4s ease both;
+        }
+
+        .form-note span {
+            color: var(--teal);
+            font-weight: 500;
+        }
+
+        /* ─── HERO CARD ─── */
+        .hero-visual {
+            animation: fadeUp .7s .2s ease both;
+        }
+
+        .cv-card {
+            background: white;
+            border: 1.5px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 20px 60px rgba(15, 30, 53, 0.1);
+            position: relative;
+        }
+
+        .cv-card::before {
+            content: 'Your Naukri CV';
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: #F4A261;
+            color: white;
+            font-size: 0.72rem;
+            font-weight: 500;
+            padding: 3px 10px;
+            border-radius: 100px;
+            letter-spacing: 0.04em;
+        }
+
+        .cv-line {
+            height: 8px;
+            border-radius: 4px;
+            background: #EEF2F6;
+            margin-bottom: 8px;
+        }
+
+        .cv-line.dark {
+            background: #D0DDE8;
+        }
+
+        .cv-line.w40 {
+            width: 40%;
+        }
+
+        .cv-line.w70 {
+            width: 70%;
+        }
+
+        .cv-line.w55 {
+            width: 55%;
+        }
+
+        .cv-line.w85 {
+            width: 85%;
+        }
+
+        .cv-line.w60 {
+            width: 60%;
+        }
+
+        .cv-section-label {
+            font-size: 0.7rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            margin: 14px 0 8px;
+        }
+
+        .arrow-down {
+            text-align: center;
+            padding: 14px 0;
+            font-size: 1.4rem;
+            color: var(--teal);
+            animation: bounce 2s infinite;
+        }
+
+        .result-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 4px;
+        }
+
+        .result-card {
+            background: linear-gradient(135deg, var(--navy) 0%, #1A3A5C 100%);
+            border-radius: 10px;
+            padding: 14px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .result-card::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 50%;
+        }
+
+        .result-card .flag {
+            font-size: 1.3rem;
+            margin-bottom: 6px;
+        }
+
+        .result-card .country {
+            font-size: 0.78rem;
+            font-weight: 500;
+            opacity: 0.7;
+        }
+
+        .result-card .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(10, 147, 150, 0.3);
+            color: var(--teal2);
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 100px;
+            margin-top: 6px;
+        }
+
+        .result-card .status::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            background: var(--teal2);
+            border-radius: 50%;
+        }
+
+        /* ─── PROBLEM STRIP ─── */
+        .problem-strip {
+            background: var(--navy);
+            padding: 60px 80px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problem-strip::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(10, 147, 150, 0.08) 0%, transparent 70%);
+        }
+
+        .problem-item {
+            position: relative;
+        }
+
+        .problem-icon {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+        }
+
+        .problem-item h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .problem-item p {
+            font-size: 0.87rem;
+            color: rgba(255, 255, 255, 0.55);
+            line-height: 1.65;
+        }
+
+        /* ─── HOW IT WORKS ─── */
+        .how {
+            padding: 100px 80px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(1.9rem, 3vw, 2.6rem);
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 60px;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 24px;
+            position: relative;
+        }
+
+        .steps::before {
+            content: '';
+            position: absolute;
+            top: 28px;
+            left: 40px;
+            right: 40px;
+            height: 1px;
+            background: linear-gradient(90deg, var(--teal), var(--border));
+            z-index: 0;
+        }
+
+        .step {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .step-num {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--navy);
+            color: white;
+            font-family: 'Fraunces', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            border: 3px solid var(--cream);
+            box-shadow: 0 0 0 2px var(--teal);
+        }
+
+        .step h4 {
+            font-weight: 600;
+            font-size: 0.92rem;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .step p {
+            font-size: 0.83rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* ─── COUNTRIES ─── */
+        .countries {
+            background: white;
+            padding: 80px;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .countries-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .country-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 12px;
+            margin-top: 40px;
+        }
+
+        .country-pill {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            padding: 18px 10px;
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            transition: all .2s;
+            cursor: default;
+        }
+
+        .country-pill:hover {
+            border-color: var(--teal);
+            background: rgba(10, 147, 150, 0.04);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(10, 147, 150, 0.1);
+        }
+
+        .country-pill .flag2 {
+            font-size: 1.8rem;
+        }
+
+        .country-pill .cname {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text);
+            text-align: center;
+        }
+
+        .country-pill .cdesc {
+            font-size: 0.65rem;
+            color: var(--muted);
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        /* ─── WHY DIFFERENT ─── */
+        .why {
+            padding: 100px 80px;
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .diff-list {
+            margin-top: 32px;
+        }
+
+        .diff-item {
+            display: flex;
+            gap: 16px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .diff-item:last-child {
+            border-bottom: none;
+        }
+
+        .diff-icon {
+            width: 36px;
+            height: 36px;
+            flex-shrink: 0;
+            background: rgba(10, 147, 150, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .diff-item h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+
+        .diff-item p {
+            font-size: 0.83rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .compare-table {
+            border: 1.5px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+        }
+
+        .compare-row {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr;
+            padding: 12px 18px;
+            font-size: 0.83rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .compare-row:last-child {
+            border-bottom: none;
+        }
+
+        .compare-row.header {
+            background: var(--navy);
+            color: white;
+            font-weight: 500;
+            font-size: 0.78rem;
+        }
+
+        .compare-row:not(.header):nth-child(even) {
+            background: #F7FAFB;
+        }
+
+        .check {
+            color: var(--teal);
+            font-weight: 600;
+        }
+
+        .cross {
+            color: #E76F51;
+        }
+
+        /* ─── SOCIAL PROOF ─── */
+        .proof {
+            background: var(--navy);
+            padding: 80px;
+            text-align: center;
+        }
+
+        .proof-inner {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .proof h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.1rem;
+            font-weight: 400;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 40px;
+            letter-spacing: 0.02em;
+        }
+
+        .stat-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        .stat {}
+
+        .stat-num {
+            font-family: 'Fraunces', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--sand);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.55);
+            line-height: 1.5;
+        }
+
+        /* ─── BOTTOM CTA ─── */
+        .cta-section {
+            padding: 100px 80px;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-section h2 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .cta-section p {
+            font-size: 1rem;
+            color: var(--muted);
+            line-height: 1.7;
+            margin-bottom: 36px;
+        }
+
+        .waitlist-form-2 {
+            display: flex;
+            gap: 10px;
+            max-width: 480px;
+            margin: 0 auto 12px;
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            padding: 24px 80px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        footer p {
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        footer .logo-sm {
+            font-family: 'Fraunces', serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        footer .logo-sm span {
+            color: var(--teal);
+        }
+
+        /* ─── ANIMATIONS ─── */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(6px);
+            }
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 100px 32px 60px;
+            }
+
+            .hero-visual {
+                display: none;
+            }
+
+            .problem-strip {
+                grid-template-columns: 1fr;
+                padding: 50px 32px;
+            }
+
+            .how {
+                padding: 70px 32px;
+            }
+
+            .steps {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .steps::before {
+                display: none;
+            }
+
+            .countries {
+                padding: 60px 32px;
+            }
+
+            .country-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .why {
+                grid-template-columns: 1fr;
+                padding: 60px 32px;
+                gap: 40px;
+            }
+
+            .proof {
+                padding: 60px 32px;
+            }
+
+            .cta-section {
+                padding: 70px 32px;
+            }
+
+            nav {
+                padding: 14px 24px;
+            }
+
+            footer {
+                padding: 20px 32px;
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <div class="logo">Borderless<span>Resume</span></div>
+        <a href="#waitlist">Join Waitlist →</a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-left">
+            <div class="hero-eyebrow">Built for South Asian professionals going global</div>
+            <h1>Your South Asian CV,<br><em>rebuilt</em> for the<br><span class="underline-sand">world</span>.</h1>
+            <p class="hero-sub">
+                Naukri got you this far. Now you're targeting <strong>US, UK, Canada, UAE, Australia, Singapore</strong>
+                — or remote roles at global companies.<br><br>
+                BorderlessResume converts your South Asian CV into the right format, right terminology, and right
+                structure
+                for wherever you're going next.
+            </p>
+            <form class="waitlist-form" onsubmit="handleSubmit(event)">
+                <input type="email" id="email" placeholder="your@email.com" required>
+                <button type="submit" id="submit-btn" class="btn-primary">Join Waitlist</button>
+            </form>
+            <p class="form-note"><span>847 South Asian professionals</span> already on the list · Free early access</p>
+        </div>
+
+        <div class="hero-visual">
+            <div class="cv-card">
+                <div class="cv-line dark w40"></div>
+                <div class="cv-line w70" style="margin-top:4px"></div>
+                <div class="cv-section-label">Experience</div>
+                <div class="cv-line w85"></div>
+                <div class="cv-line w60"></div>
+                <div class="cv-line w70"></div>
+                <div class="cv-section-label">Education</div>
+                <div class="cv-line dark w55"></div>
+                <div class="cv-line w40"></div>
+            </div>
+
+            <div class="arrow-down">↓</div>
+
+            <div class="result-cards">
+                <div class="result-card">
+                    <div class="flag">🇺🇸</div>
+                    <div class="country">USA · ATS-Ready</div>
+                    <div class="status">Optimised</div>
+                </div>
+                <div class="result-card">
+                    <div class="flag">🇬🇧</div>
+                    <div class="country">UK · CV Format</div>
+                    <div class="status">Optimised</div>
+                </div>
+                <div class="result-card">
+                    <div class="flag">🇨🇦</div>
+                    <div class="country">Canada · Express Entry</div>
+                    <div class="status">Optimised</div>
+                </div>
+                <div class="result-card">
+                    <div class="flag">🌐</div>
+                    <div class="country">Remote · Global</div>
+                    <div class="status">Optimised</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROBLEM STRIP -->
+    <section class="problem-strip">
+        <div class="problem-item">
+            <div class="problem-icon">🤖</div>
+            <h3>ATS systems reject South Asian CVs</h3>
+            <p>Most South Asian resumes use formats that confuse Western ATS software — the wrong structure, wrong
+                keywords,
+                wrong layout. Your application never reaches a human.</p>
+        </div>
+        <div class="problem-item">
+            <div class="problem-icon">🌍</div>
+            <h3>Generic tools don't understand India</h3>
+            <p>Zety and Kickresume were built for Western job seekers. They don't know how to present IIT/NIT degrees,
+                CGPA, South Asian company names, or Naukri profile formats.</p>
+        </div>
+        <div class="problem-item">
+            <div class="problem-icon">🗺️</div>
+            <h3>Every country has different rules</h3>
+            <p>A UK CV is not a US resume. UAE applications often include photos. Australian roles need selection
+                criteria statements. One-size-fits-all fails everywhere.</p>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how">
+        <div class="section-label">How it works</div>
+        <div class="section-title">From Naukri to offer-ready<br>in four steps.</div>
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <h4>Paste your CV</h4>
+                <p>Upload your existing South Asian CV or paste your Naukri profile. We handle the extraction.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <h4>Pick your destination</h4>
+                <p>Select from US, UK, Canada, UAE, Australia, Singapore, or Remote — each has its own rules.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <h4>AI rebuilds it</h4>
+                <p>Our AI rewrites your content in the right format, terminology, and structure for that market.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">4</div>
+                <h4>Download your PDF</h4>
+                <p>Get an ATS-optimised, recruiter-ready PDF. Clean templates, zero watermarks.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- COUNTRIES -->
+    <section class="countries">
+        <div class="countries-inner">
+            <div class="section-label">Supported destinations</div>
+            <div class="section-title">Wherever you're going,<br>we know the format.</div>
+            <div class="country-grid">
+                <div class="country-pill">
+                    <div class="flag2">🇺🇸</div>
+                    <div class="cname">USA</div>
+                    <div class="cdesc">ATS-optimised chronological</div>
+                </div>
+                <div class="country-pill">
+                    <div class="flag2">🇨🇦</div>
+                    <div class="cname">Canada</div>
+                    <div class="cdesc">Express Entry ready</div>
+                </div>
+                <div class="country-pill">
+                    <div class="flag2">🇬🇧</div>
+                    <div class="cname">UK</div>
+                    <div class="cdesc">2-page CV format</div>
+                </div>
+                <div class="country-pill">
+                    <div class="flag2">🇦🇪</div>
+                    <div class="cname">UAE / Gulf</div>
+                    <div class="cdesc">Regional norms included</div>
+                </div>
+                <div class="country-pill">
+                    <div class="flag2">🇦🇺</div>
+                    <div class="cname">Australia</div>
+                    <div class="cdesc">Selection criteria aware</div>
+                </div>
+                <div class="country-pill">
+                    <div class="flag2">🇸🇬</div>
+                    <div class="cname">Singapore</div>
+                    <div class="cdesc">EP-ready format</div>
+                </div>
+                <div class="country-pill">
+                    <div class="flag2">🌐</div>
+                    <div class="cname">Remote</div>
+                    <div class="cdesc">Global remote roles</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY DIFFERENT -->
+    <section style="padding: 0 80px; max-width: 1260px; margin: 0 auto;">
+        <div class="why" style="padding: 100px 0;">
+            <div>
+                <div class="section-label">Why BorderlessResume</div>
+                <div class="section-title" style="margin-bottom:0">Built for India.<br>Optimised for the world.</div>
+                <div class="diff-list">
+                    <div class="diff-item">
+                        <div class="diff-icon">🎓</div>
+                        <div>
+                            <h4>Knows South Asian credentials</h4>
+                            <p>We understand how to present IIT/NIT degrees, CGPA vs GPA, Infosys vs unknown company
+                                names, and what South Asian work experience looks like to a foreign recruiter.</p>
+                        </div>
+                    </div>
+                    <div class="diff-item">
+                        <div class="diff-icon">🗺️</div>
+                        <div>
+                            <h4>7 destination formats</h4>
+                            <p>Each country gets its own template, terminology, and structure — not a single generic
+                                format applied everywhere.</p>
+                        </div>
+                    </div>
+                    <div class="diff-item">
+                        <div class="diff-icon">⚡</div>
+                        <div>
+                            <h4>AI that understands context</h4>
+                            <p>Not just a template filler. The AI rewrites your experience in the voice and language
+                                that Western and Gulf recruiters actually respond to.</p>
+                        </div>
+                    </div>
+                    <div class="diff-item">
+                        <div class="diff-icon">💸</div>
+                        <div>
+                            <h4>Priced for the South Asian job seeker</h4>
+                            <p>$4.99 per download or $9/month. No $25/month subscriptions built for US salaries.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="compare-table">
+                    <div class="compare-row header">
+                        <div>Feature</div>
+                        <div style="text-align:center">BorderlessResume</div>
+                        <div style="text-align:center">Generic tools</div>
+                    </div>
+                    <div class="compare-row">
+                        <div>Understands South Asian CVs</div>
+                        <div class="check" style="text-align:center">✓</div>
+                        <div class="cross" style="text-align:center">✗</div>
+                    </div>
+                    <div class="compare-row">
+                        <div>Multi-country formats</div>
+                        <div class="check" style="text-align:center">✓ 7 countries</div>
+                        <div class="cross" style="text-align:center">US-focused</div>
+                    </div>
+                    <div class="compare-row">
+                        <div>IIT/NIT credential handling</div>
+                        <div class="check" style="text-align:center">✓</div>
+                        <div class="cross" style="text-align:center">✗</div>
+                    </div>
+                    <div class="compare-row">
+                        <div>India-friendly pricing</div>
+                        <div class="check" style="text-align:center">✓ from $4.99</div>
+                        <div class="cross" style="text-align:center">$20–26/mo</div>
+                    </div>
+                    <div class="compare-row">
+                        <div>No hidden paywalls</div>
+                        <div class="check" style="text-align:center">✓</div>
+                        <div class="cross" style="text-align:center">Common issue</div>
+                    </div>
+                    <div class="compare-row">
+                        <div>Remote role optimisation</div>
+                        <div class="check" style="text-align:center">✓</div>
+                        <div class="cross" style="text-align:center">Rarely</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="proof">
+        <div class="proof-inner">
+            <h2>"The market for skilled South Asian professionals going global has never been larger — or more complex
+                to
+                navigate."</h2>
+            <div class="stat-row">
+                <div class="stat">
+                    <div class="stat-num">500K+</div>
+                    <div class="stat-label">South Asian professionals apply for international jobs every year</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">71%</div>
+                    <div class="stat-label">Of all H-1B visas go to South Asian nationals — now pivoting to UK, Canada &
+                        UAE
+                    </div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">40%</div>
+                    <div class="stat-label">Surge in India-based hiring by global tech companies in 2025</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOTTOM CTA -->
+    <section class="cta-section" id="waitlist">
+        <h2>Be first when we launch.</h2>
+        <p>We're putting the finishing touches on BorderlessResume. Join the waitlist and get free early access — plus
+            our guide: <em>"How to present your South Asian credentials to foreign recruiters."</em></p>
+        <form class="waitlist-form-2" onsubmit="handleSubmit(event)">
+            <input type="email" id="email" placeholder="your@email.com" required
+                style="flex:1;padding:14px 18px;border:1.5px solid var(--border);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:0.95rem;background:white;color:var(--text);outline:none;">
+            <button type="submit" id="submit-btn" class="btn-primary">Join Waitlist</button>
+        </form>
+        <p style="font-size:0.8rem;color:var(--muted);">No spam. Unsubscribe any time. Free early access for waitlist
+            members.</p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="logo-sm">Borderless<span>Resume</span></div>
+        <p>© 2026 BorderlessResume · Built for South Asian professionals going global</p>
+        <p style="font-size:0.8rem;color:var(--muted);">Made with ♥ for the South Asian professional community</p>
+    </footer>
+
+    <!--<script>
+        function handleSubmit(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const input = e.target.querySelector('input');
+            btn.textContent = '✓ You\'re on the list!';
+            btn.style.background = 'var(--teal)';
+            input.disabled = true;
+            btn.disabled = true;
+            // In Carrd: replace this with your Carrd form action or embed a Mailchimp/ConvertKit form
+        }
+    </script>-->
+
+
+    <script>
+        // ─────────────────────────────────────────────
+        // STEP 1: Create a Google Sheet with a column
+        //         named "Email" (and optionally "Date")
+        // STEP 2: Go to sheetdb.io → New API → paste
+        //         your Google Sheet URL → copy the API URL
+        // STEP 3: Replace the URL below with your SheetDB API URL
+        // ─────────────────────────────────────────────
+        const SHEETDB_URL = 'https://sheetdb.io/api/v1/i60ta47dvnyb6';
+
+        async function submitEmail() {
+            const emailInput = document.getElementById('email');
+            const btn = document.getElementById('submit-btn');
+            const errorMsg = document.getElementById('error-msg');
+            const success = document.getElementById('success');
+            const formSection = document.getElementById('form-section');
+
+            const email = emailInput.value.trim();
+
+            // Basic validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                errorMsg.classList.add('show');
+                emailInput.focus();
+                return;
+            }
+
+            errorMsg.classList.remove('show');
+            btn.classList.add('loading');
+            btn.disabled = true;
+            emailInput.disabled = true;
+
+            try {
+                const response = await fetch(SHEETDB_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        data: [{
+                            Email: email,
+                            Date: new Date().toISOString()
+                        }]
+                    })
+                });
+
+                if (response.ok) {
+                    formSection.style.display = 'none';
+                    success.classList.add('show');
+                } else {
+                    throw new Error('Server error');
+                }
+            } catch (err) {
+                btn.classList.remove('loading');
+                btn.disabled = false;
+                emailInput.disabled = false;
+                errorMsg.textContent = 'Something went wrong — please try again.';
+                errorMsg.classList.add('show');
+            }
+        }
+
+        // Submit on Enter key
+        document.getElementById('email').addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') submitEmail();
+        });
+    </script>
+
+</body>
+
+</html>
