@@ -1281,6 +1281,14 @@
             border-radius: 50%;
             flex-shrink: 0;
         }
+
+        #signup-count {
+            transition: opacity 0.3s ease;
+        }
+
+        #signup-count.updating {
+            opacity: 0.3;
+        }
     </style>
 </head>
 
@@ -1916,16 +1924,31 @@
         });
 
         async function loadSignupCount() {
+            // Show last known count immediately from browser cache
+            const cached = localStorage.getItem('signupCount');
+            if (cached) {
+                document.getElementById('signup-count').textContent = cached;
+            }
+
             try {
                 const response = await fetch(`${SHEETDB_URL}/count`);
                 const data = await response.json();
                 const liveCount = data.rows || 0;
                 const displayCount = liveCount + 47;
                 document.getElementById('signup-count').textContent = displayCount;
+                // Save to cache for next visit
+                localStorage.setItem('signupCount', displayCount);
             } catch (err) {
-                document.getElementById('signup-count').textContent = '';
+                document.getElementById('signup-count').textContent = cached || '';
             }
         }
+
+        const el = document.getElementById('signup-count');
+        el.classList.add('updating');
+        setTimeout(() => {
+            el.textContent = displayCount;
+            el.classList.remove('updating');
+        }, 300);
 
         // Load count on page open
         loadSignupCount();
