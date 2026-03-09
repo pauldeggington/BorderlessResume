@@ -1140,6 +1140,80 @@
         .error-msg.show {
             display: block;
         }
+
+        /* ── FOUNDER STORY ── */
+        .founder-story {
+            padding: 100px 80px;
+            background: white;
+            border-top: 1px solid var(--border);
+        }
+
+        .founder-inner {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .founder-content h2 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.25;
+            letter-spacing: -0.02em;
+            margin-bottom: 32px;
+            position: relative;
+        }
+
+        .founder-content h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--sand);
+            margin-top: 24px;
+            border-radius: 2px;
+        }
+
+        .story-text p {
+            font-size: 1.05rem;
+            color: var(--muted);
+            line-height: 1.75;
+            margin-bottom: 24px;
+        }
+
+        .story-text strong {
+            color: var(--navy);
+            font-weight: 600;
+        }
+
+        .founder-signoff {
+            margin-top: 40px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+        }
+
+        .signoff-name {
+            font-family: 'Fraunces', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--navy);
+            font-style: italic;
+            margin-bottom: 6px;
+        }
+
+        .signoff-title {
+            font-size: 0.85rem;
+            color: var(--teal);
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 900px) {
+            .founder-story {
+                padding: 60px 32px;
+            }
+        }
     </style>
 </head>
 
@@ -1600,6 +1674,33 @@
                         <div>Remote role optimisation</div>
                         <div class="check" style="text-align:center">✓</div>
                         <div class="cross" style="text-align:center">Rarely</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOUNDER STORY -->
+    <section class="founder-story">
+        <div class="founder-inner">
+            <div class="section-label">Our Story</div>
+            <div class="founder-content">
+                <h2>I built BorderlessCV because I lived this exact problem.</h2>
+                <div class="story-text">
+                    <p>When I first tried to take my career global, I applied to hundreds of roles across the US, UK,
+                        and Europe. Despite having strong technical experience at top South Asian firms, my applications
+                        were met with complete silence.</p>
+                    <p>I eventually realized the harsh truth: <strong>foreign ATS systems and recruiters couldn't parse
+                            my locally-formatted CV.</strong> Over-detailed project tables, objective statements, and
+                        unfamiliar degree abbreviations were getting my profile instantly rejected.</p>
+                    <p>It took me months of painful iteration, learning country-specific standards, and completely
+                        rewriting my experience to finally start landing interviews—and eventually, offers abroad.</p>
+                    <p>I created BorderlessCV so that no other South Asian professional has to lose out on global
+                        opportunities just because their resume was formatted for the wrong hemisphere. We do the heavy
+                        lifting, so your true potential isn't lost in translation.</p>
+                    <div class="founder-signoff">
+                        <div class="signoff-name">— The Founder</div>
+                        <div class="signoff-title">Built with firsthand experience</div>
                     </div>
                 </div>
             </div>
