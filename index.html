@@ -1912,18 +1912,24 @@
         }
 
         // Submit on Enter key
-        document.getElementById('email').addEventListener('keydown', function (e) {
-            if (e.key === 'Enter') submitEmail();
-        });
+    </script>
 
+    <script>
         async function loadSignupCount() {
+            const cached = localStorage.getItem('signupCount');
+            if (cached) {
+                document.getElementById('signup-count').textContent = cached;
+            }
+
             try {
                 const response = await fetch(`${SHEETDB_URL}/count`);
                 const data = await response.json();
-                const count = data.rows || 0;
-                document.getElementById('signup-count').textContent = count;
+                const liveCount = data.rows || 0;
+                const displayCount = liveCount + 47; // change 47 to your offline number
+                document.getElementById('signup-count').textContent = displayCount;
+                localStorage.setItem('signupCount', displayCount);
             } catch (err) {
-                document.getElementById('signup-count').textContent = '';
+                document.getElementById('signup-count').textContent = cached || '';
             }
         }
 
