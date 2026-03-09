@@ -5,7 +5,7 @@ function onTurnstileSuccess(token) {
 }
 
 const formLoadTime = Date.now();
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxXMPhBPum2lhq21sIjlJdSOvKiY0tnPqeUU0MlXk23DsFyFbPbwlU6M9D5K-6MaVR3/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxkY-NgAolRGPNLvjBpif9FbA0f1iHzOvnsfw8-nCgsOiif7lVnbiAueiV5W5fsoxF2/exec';
 
 async function submitEmail() {
     const emailInput = document.getElementById('email');
@@ -163,20 +163,31 @@ async function submitEmail() {
 }
 
 async function loadSignupCount() {
+    const counterDisplay = document.getElementById('signup-count');
     const cached = localStorage.getItem('signupCount');
     if (cached) {
-        document.getElementById('signup-count').textContent = cached;
+        counterDisplay.textContent = cached;
     }
 
     try {
-        const response = await fetch(APPS_SCRIPT_URL);
+        const response = await fetch(APPS_SCRIPT_URL, {
+            method: 'GET',
+            mode: 'cors',
+            cache: 'no-cache'
+        });
+
+        if (!response.ok) throw new Error('Network response was not ok');
+
         const data = await response.json();
         const liveCount = data.rows || 0;
-        const displayCount = liveCount + 93;
-        document.getElementById('signup-count').textContent = displayCount;
+        const displayCount = liveCount + 93; // 93 is our starting manual offset
+
+        counterDisplay.textContent = displayCount;
         localStorage.setItem('signupCount', displayCount);
     } catch (err) {
-        document.getElementById('signup-count').textContent = cached || '';
+        console.warn("Could not load live signup count:", err);
+        // Keep the cached version if fetch fails
+        if (cached) counterDisplay.textContent = cached;
     }
 }
 
