@@ -153,6 +153,7 @@ async function submitEmail() {
         }
 
     } catch (err) {
+        console.error("Submission error:", err);
         btn.classList.remove('loading');
         btn.disabled = false;
         emailInput.disabled = false;
