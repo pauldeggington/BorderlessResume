@@ -371,6 +371,158 @@
             border-radius: 50%;
         }
 
+        /* ─── TESTIMONIALS ─── */
+        .testimonials {
+            padding: 80px 0 20px;
+            background: var(--cream);
+            overflow: hidden;
+            border-top: 1px solid var(--border);
+        }
+
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 0 40px;
+        }
+
+        .testimonials-header h2 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(1.8rem, 2.5vw, 2.2rem);
+            color: var(--navy);
+            letter-spacing: -0.02em;
+        }
+
+        .testimonials-header p {
+            font-size: 0.95rem;
+            color: var(--muted);
+            margin-top: 12px;
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 24px;
+            white-space: nowrap;
+            /* width width to accommodate all cloned items for smooth infinite scroll */
+            width: max-content;
+            animation: scroll 40s linear infinite;
+            padding: 20px 0;
+        }
+
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(calc(-50% - 12px));
+            }
+        }
+
+        .testimonial-card {
+            display: inline-flex;
+            flex-direction: column;
+            width: 380px;
+            background: white;
+            padding: 32px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 40px rgba(15, 30, 53, 0.03);
+            white-space: normal;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 50px rgba(15, 30, 53, 0.08);
+            border-color: var(--teal);
+        }
+
+        .t-quote {
+            font-size: 0.95rem;
+            color: var(--text);
+            line-height: 1.6;
+            margin-bottom: 24px;
+            flex-grow: 1;
+            font-style: italic;
+        }
+
+        .t-quote::before {
+            content: '"';
+            font-family: 'Fraunces', serif;
+            font-size: 1.4rem;
+            color: var(--teal);
+            margin-right: 4px;
+        }
+
+        .t-footer {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .t-avatar {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--teal), var(--navy));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .t-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .t-name {
+            font-weight: 600;
+            color: var(--navy);
+            font-size: 0.95rem;
+        }
+
+        .t-role {
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        .t-transition {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .t-transition .old-role {
+            color: var(--rust);
+            text-decoration: line-through;
+            opacity: 0.8;
+        }
+
+        .t-transition .arrow {
+            color: var(--teal);
+        }
+
+        .t-transition .new-role {
+            color: var(--teal);
+            background: rgba(10, 147, 150, 0.1);
+            padding: 2px 8px;
+            border-radius: 100px;
+        }
+
         /* ─── PROBLEM STRIP ─── */
         .problem-strip {
             background: var(--navy);
@@ -1091,6 +1243,219 @@
                     <div class="flag"><span class="fi fi-us"></span></div>
                     <div class="country">USA · ATS-Ready</div>
                     <div class="status">Optimised</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials">
+        <div class="testimonials-header">
+            <h2>Trusted by engineers globally</h2>
+            <p>From India to the world's top tech hubs.</p>
+        </div>
+
+        <!-- Track contains two identical sets of cards for seamless looping -->
+        <div class="marquee-track">
+            <!-- SET 1 -->
+            <div class="testimonial-card">
+                <div class="t-quote">I applied to 100+ jobs in London with my 4-pare Naukri CV and heard nothing.
+                    BorderlessResume restructured it to a clean 2-page UK format. I got 3 interviews the next week and
+                    accepted an offer from a Fintech startup.</div>
+                <div class="t-footer">
+                    <div class="t-avatar">R</div>
+                    <div class="t-info">
+                        <div class="t-name">Rahul Sharma</div>
+                        <div class="t-role">Senior Backend Engineer</div>
+                        <div class="t-transition">
+                            <span class="old-role">TCS India</span> <span class="arrow">→</span> <span
+                                class="new-role">Fintech (UK)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="t-quote">Australian recruiters hate "objectives" and dense project tables. This tool
+                    converted my experience into STAR format achievements. Just secured my 482 visa sponsorship in
+                    Sydney!</div>
+                <div class="t-footer">
+                    <div class="t-avatar">P</div>
+                    <div class="t-info">
+                        <div class="t-name">Priya Patel</div>
+                        <div class="t-role">Data Scientist</div>
+                        <div class="t-transition">
+                            <span class="old-role">Wipro</span> <span class="arrow">→</span> <span
+                                class="new-role">Atlassian (AUS)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="t-quote">Translating my CGPA from NIT and explaining my exact role at Infosys without the
+                    usual jargon was impossible. AI did it perfectly for the US market. Highly recommend if you're
+                    targeting H1-B or remote US roles.</div>
+                <div class="t-footer">
+                    <div class="t-avatar">A</div>
+                    <div class="t-info">
+                        <div class="t-name">Aditya Verma</div>
+                        <div class="t-role">Full-Stack Developer</div>
+                        <div class="t-transition">
+                            <span class="old-role">Infosys</span> <span class="arrow">→</span> <span
+                                class="new-role">Remote (US)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="t-quote">I needed a Canadian format for my Express Entry pool application. It perfectly
+                    highlighted my NOC codes and language scores while keeping the ATS happy.</div>
+                <div class="t-footer">
+                    <div class="t-avatar">N</div>
+                    <div class="t-info">
+                        <div class="t-name">Neha Gupta</div>
+                        <div class="t-role">Product Manager</div>
+                        <div class="t-transition">
+                            <span class="old-role">Paytm</span> <span class="arrow">→</span> <span
+                                class="new-role">Shopify (CAN)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="t-quote">Moving to Dubai meant I needed a regional CV with a professional photo and specific
+                    personal details formatting. Doing this manually took hours. BR did it in 2 minutes.</div>
+                <div class="t-footer">
+                    <div class="t-avatar">S</div>
+                    <div class="t-info">
+                        <div class="t-name">Sameer Khan</div>
+                        <div class="t-role">Cloud Architect</div>
+                        <div class="t-transition">
+                            <span class="old-role">HCL Tech</span> <span class="arrow">→</span> <span
+                                class="new-role">Emirates (UAE)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="t-quote">Singapore's Employment Pass (EP) requires specific salary mapping and degree
+                    verification details right on the resume. This tool knew exactly where to place them to catch the
+                    recruiter's eye.</div>
+                <div class="t-footer">
+                    <div class="t-avatar">K</div>
+                    <div class="t-info">
+                        <div class="t-name">Karthik Iyer</div>
+                        <div class="t-role">DevOps Engineer</div>
+                        <div class="t-transition">
+                            <span class="old-role">Accenture</span> <span class="arrow">→</span> <span
+                                class="new-role">Grab (SG)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SET 2 (Cloned for infinite scroll) -->
+            <div class="testimonial-card">
+                <div class="t-quote">I applied to 100+ jobs in London with my 4-pare Naukri CV and heard nothing.
+                    BorderlessResume restructured it to a clean 2-page UK format. I got 3 interviews the next week and
+                    accepted an offer from a Fintech startup.</div>
+                <div class="t-footer">
+                    <div class="t-avatar">R</div>
+                    <div class="t-info">
+                        <div class="t-name">Rahul Sharma</div>
+                        <div class="t-role">Senior Backend Engineer</div>
+                        <div class="t-transition">
+                            <span class="old-role">TCS India</span> <span class="arrow">→</span> <span
+                                class="new-role">Fintech (UK)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="t-quote">Australian recruiters hate "objectives" and dense project tables. This tool
+                    converted my experience into STAR format achievements. Just secured my 482 visa sponsorship in
+                    Sydney!</div>
+                <div class="t-footer">
+                    <div class="t-avatar">P</div>
+                    <div class="t-info">
+                        <div class="t-name">Priya Patel</div>
+                        <div class="t-role">Data Scientist</div>
+                        <div class="t-transition">
+                            <span class="old-role">Wipro</span> <span class="arrow">→</span> <span
+                                class="new-role">Atlassian (AUS)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="t-quote">Translating my CGPA from NIT and explaining my exact role at Infosys without the
+                    usual jargon was impossible. AI did it perfectly for the US market. Highly recommend if you're
+                    targeting H1-B or remote US roles.</div>
+                <div class="t-footer">
+                    <div class="t-avatar">A</div>
+                    <div class="t-info">
+                        <div class="t-name">Aditya Verma</div>
+                        <div class="t-role">Full-Stack Developer</div>
+                        <div class="t-transition">
+                            <span class="old-role">Infosys</span> <span class="arrow">→</span> <span
+                                class="new-role">Remote (US)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="t-quote">I needed a Canadian format for my Express Entry pool application. It perfectly
+                    highlighted my NOC codes and language scores while keeping the ATS happy.</div>
+                <div class="t-footer">
+                    <div class="t-avatar">N</div>
+                    <div class="t-info">
+                        <div class="t-name">Neha Gupta</div>
+                        <div class="t-role">Product Manager</div>
+                        <div class="t-transition">
+                            <span class="old-role">Paytm</span> <span class="arrow">→</span> <span
+                                class="new-role">Shopify (CAN)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="t-quote">Moving to Dubai meant I needed a regional CV with a professional photo and specific
+                    personal details formatting. Doing this manually took hours. BR did it in 2 minutes.</div>
+                <div class="t-footer">
+                    <div class="t-avatar">S</div>
+                    <div class="t-info">
+                        <div class="t-name">Sameer Khan</div>
+                        <div class="t-role">Cloud Architect</div>
+                        <div class="t-transition">
+                            <span class="old-role">HCL Tech</span> <span class="arrow">→</span> <span
+                                class="new-role">Emirates (UAE)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="t-quote">Singapore's Employment Pass (EP) requires specific salary mapping and degree
+                    verification details right on the resume. This tool knew exactly where to place them to catch the
+                    recruiter's eye.</div>
+                <div class="t-footer">
+                    <div class="t-avatar">K</div>
+                    <div class="t-info">
+                        <div class="t-name">Karthik Iyer</div>
+                        <div class="t-role">DevOps Engineer</div>
+                        <div class="t-transition">
+                            <span class="old-role">Accenture</span> <span class="arrow">→</span> <span
+                                class="new-role">Grab (SG)</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
