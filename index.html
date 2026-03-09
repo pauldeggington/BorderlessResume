@@ -1930,7 +1930,7 @@
             }
 
             try {
-                const response = await fetch(`${SHEETDB_URL}/count`);
+                const response = await fetch(APPS_SCRIPT_URL);
                 const data = await response.json();
                 const liveCount = data.rows || 0;
                 const displayCount = liveCount + 93;
@@ -1940,7 +1940,6 @@
                 document.getElementById('signup-count').textContent = cached || '';
             }
         }
-
 
         // Load count on page open
         loadSignupCount();
