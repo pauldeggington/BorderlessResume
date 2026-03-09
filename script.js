@@ -1,3 +1,4 @@
+const formLoadTime = Date.now();
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxNa6un_LfyXSbS7kKzYtntHA212mFlwXqI4dK-Rt6cMEKDFYAjn4-uhoKNazyrSKmX/exec';
 
 async function submitEmail() {
@@ -17,6 +18,14 @@ async function submitEmail() {
         return;
     }
 
+    // Time-based honeypot: check if form was filled too quickly (under 2 seconds)
+    const timeSpent = Date.now() - formLoadTime;
+    if (timeSpent < 2000) {
+        // Fake a successful submission
+        formSection.style.display = 'none';
+        success.classList.add('show');
+        return;
+    }
     // Client-side validations (matching server logic)
     const blockedDomains = [
         'mailinator.com', 'guerrillamail.com', 'tempmail.com',
