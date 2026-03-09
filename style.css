@@ -1259,41 +1259,200 @@
             border-radius: 50%;
             flex-shrink: 0;
         }
-    </style>
-</head>
 
-<body>
+        .form-note {
+            font-size: 0.78rem;
+            color: #9BB0C0;
+        }
 
-    <!-- NAV -->
-    <nav>
-        <div class="logo">Borderless<span>CV</span></div>
-    </nav>
+        .form-note span {
+            color: #0A9396;
+            font-weight: 500;
+        }
 
-    <!-- HERO -->
-    <section class="hero">
-        <div class="hero-left">
-            <div class="hero-eyebrow">Built by a team of experts who have been through this</div>
-            <h1>Your South Asian CV,<br><em>rebuilt</em> for the<br><span class="underline-sand">world</span>.</h1>
-            <p class="hero-sub">
-                Desi got you this far. Now you're targeting <strong>UK, Canada, UAE, Australia, Singapore, Germany,
-                    USA</strong>
-                or remote roles at global companies.<br><br>
-                BorderlessCV converts your South Asian CV into the right format, right terminology, and right
-                structure
-                for wherever you're going next.
-            </p>
-            <div id="form-section" id="">
-                <div class="form-row">
-                    <input type="email" id="email" placeholder="your@email.com" autocomplete="email">
-                    <button id="submit-btn" onclick="submitEmail()">
-                        <span class="btn-text">Notify Me When Live →</span>
-                        <span class="spinner"></span>
-                    </button>
-                </div>
-                <div class="counter">
-                    <span id="signup-count">...</span>
-                    <span class="counter-label">South Asian professionals have already signed up</span>
-                </div>
-                <div class="error-msg" id="error-msg">Please enter a valid email address.</div>
-                <p class="form-note">
-                    <!--<span>Free early access</span> · No spam · Unsubscribe any time-->
+        /* ── SUCCESS STATE ── */
+        .success {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            padding: 28px;
+            background: rgba(10, 147, 150, 0.06);
+            border: 1.5px solid rgba(10, 147, 150, 0.2);
+            border-radius: 14px;
+            margin-top: 4px;
+        }
+
+        .success.show {
+            display: flex;
+        }
+
+        .success-icon {
+            font-size: 2rem;
+        }
+
+        .success h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.1rem;
+            color: #0F1E35;
+            font-weight: 600;
+        }
+
+        .success p {
+            font-size: 0.85rem;
+            color: #5E7080;
+            line-height: 1.6;
+        }
+
+        /* ── ERROR ── */
+        .error-msg {
+            display: none;
+            font-size: 0.82rem;
+            color: #CA6702;
+            margin-top: 8px;
+            text-align: left;
+        }
+
+        .error-msg.show {
+            display: block;
+        }
+
+        /* ── FOUNDER STORY ── */
+        .founder-story {
+            padding: 100px 80px;
+            background: white;
+            border-top: 1px solid var(--border);
+        }
+
+        .founder-inner {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .founder-content h2 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.25;
+            letter-spacing: -0.02em;
+            margin-bottom: 32px;
+            position: relative;
+        }
+
+        .founder-content h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--sand);
+            margin-top: 24px;
+            border-radius: 2px;
+        }
+
+        .story-text p {
+            font-size: 1.05rem;
+            color: var(--muted);
+            line-height: 1.75;
+            margin-bottom: 24px;
+        }
+
+        .story-text strong {
+            color: var(--navy);
+            font-weight: 600;
+        }
+
+        .founder-signoff {
+            margin-top: 40px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+        }
+
+        .signoff-name {
+            font-family: 'Fraunces', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--navy);
+            font-style: italic;
+            margin-bottom: 6px;
+        }
+
+        .signoff-title {
+            font-size: 0.85rem;
+            color: var(--teal);
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        /* ── FOOTER EXPANDED ── */
+        footer {
+            padding: 40px 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            font-size: 0.8rem;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--teal);
+        }
+
+        @media (max-width: 900px) {
+            .founder-story {
+                padding: 60px 32px;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+                padding: 32px 24px;
+            }
+        }
+
+        /* ── COUNTER ── */
+        .counter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: rgba(10, 147, 150, 0.06);
+            border: 1px solid rgba(10, 147, 150, 0.2);
+            border-radius: 100px;
+            padding: 8px 18px;
+            margin-bottom: 24px;
+        }
+
+        #signup-count {
+            font-family: 'Fraunces', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0F1E35;
+        }
+
+        .counter-label {
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: #5E7080;
+        }
+
+        .counter::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: #0A9396;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
