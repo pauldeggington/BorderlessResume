@@ -13,7 +13,7 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DesiCV — Your South Asian CV, Rebuilt for the World</title>
+    <title>DesiCV Your South Asian CV, Rebuilt for the World</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap"
         rel="stylesheet">
@@ -1180,7 +1180,7 @@
             <div class="success" id="success">
                 <div class="success-icon">🎉</div>
                 <h3>You're on the list!</h3>
-                <p>We'll email you the moment we launch — plus a free guide:<br>
+                <p>We'll email you the moment we launch plus a free guide:<br>
                     <em>"How to present your South Asian credentials to foreign recruiters."</em>
                 </p>
             </div>
@@ -1278,8 +1278,8 @@
             </div>
 
             <div class="testimonial-card">
-                <div class="t-quote">Explaining my NIT CGPA and what I actually did at Infosys — without the usual
-                    jargon — was something I kept putting off. The AI just handled it. Clean, US-ready, no fluff. Would
+                <div class="t-quote">Explaining my NIT CGPA and what I actually did at Infosys without the usual
+                    jargon was something I kept putting off. The AI just handled it. Clean, US-ready, no fluff. Would
                     recommend to anyone going after H-1B or remote US roles.</div>
                 <div class="t-footer">
                     <div class="t-info">
@@ -1294,7 +1294,7 @@
 
             <div class="testimonial-card">
                 <div class="t-quote">Needed a Canadian format specifically for my Express Entry pool. NOC codes,
-                    language scores, ATS-friendly layout — it got all of it right without me having to explain the
+                    language scores, ATS-friendly layout it got all of it right without me having to explain the
                     immigration context. That part surprised me honestly.</div>
                 <div class="t-footer">
                     <div class="t-info">
@@ -1308,7 +1308,7 @@
             </div>
 
             <div class="testimonial-card">
-                <div class="t-quote">Dubai CVs are a different beast — photo, personal details, regional formatting. I
+                <div class="t-quote">Dubai CVs are a different beast photo, personal details, regional formatting. I
                     kept procrastinating because doing it manually takes forever. Took 2 minutes. Done.</div>
                 <div class="t-footer">
                     <div class="t-info">
@@ -1323,7 +1323,7 @@
 
             <div class="testimonial-card">
                 <div class="t-quote">EP applications need salary mapping and degree verification details in specific
-                    places — most tools have no idea. This one did. Recruiter noticed immediately. Now at Grab.</div>
+                    places most tools have no idea. This one did. Recruiter noticed immediately. Now at Grab.</div>
                 <div class="t-footer">
                     <div class="t-info">
                         <div class="t-role">DevOps Engineer</div>
@@ -1367,8 +1367,8 @@
             </div>
 
             <div class="testimonial-card">
-                <div class="t-quote">Explaining my NIT CGPA and what I actually did at Infosys — without the usual
-                    jargon — was something I kept putting off. The AI just handled it. Clean, US-ready, no fluff. Would
+                <div class="t-quote">Explaining my NIT CGPA and what I actually did at Infosys without the usual
+                    jargon was something I kept putting off. The AI just handled it. Clean, US-ready, no fluff. Would
                     recommend to anyone going after H-1B or remote US roles.</div>
                 <div class="t-footer">
                     <div class="t-info">
@@ -1383,7 +1383,7 @@
 
             <div class="testimonial-card">
                 <div class="t-quote">Needed a Canadian format specifically for my Express Entry pool. NOC codes,
-                    language scores, ATS-friendly layout — it got all of it right without me having to explain the
+                    language scores, ATS-friendly layout it got all of it right without me having to explain the
                     immigration context. That part surprised me honestly.</div>
                 <div class="t-footer">
                     <div class="t-info">
@@ -1397,7 +1397,7 @@
             </div>
 
             <div class="testimonial-card">
-                <div class="t-quote">Dubai CVs are a different beast — photo, personal details, regional formatting. I
+                <div class="t-quote">Dubai CVs are a different beast photo, personal details, regional formatting. I
                     kept procrastinating because doing it manually takes forever. Took 2 minutes. Done.</div>
                 <div class="t-footer">
                     <div class="t-info">
@@ -1412,7 +1412,7 @@
 
             <div class="testimonial-card">
                 <div class="t-quote">EP applications need salary mapping and degree verification details in specific
-                    places — most tools have no idea. This one did. Recruiter noticed immediately. Now at Grab.</div>
+                    places most tools have no idea. This one did. Recruiter noticed immediately. Now at Grab.</div>
                 <div class="t-footer">
                     <div class="t-info">
                         <div class="t-role">DevOps Engineer</div>
@@ -1461,7 +1461,7 @@
             <div class="step">
                 <div class="step-num">2</div>
                 <h4>Pick your destination</h4>
-                <p>Select from US, UK, Canada, UAE, Australia, Singapore, or Remote — each has its own rules.</p>
+                <p>Select from US, UK, Canada, UAE, Australia, Singapore, or Remote each has its own rules.</p>
             </div>
             <div class="step">
                 <div class="step-num">3</div>
@@ -1690,13 +1690,13 @@
                 const existing = await checkRes.json();
 
                 if (existing.length > 0) {
-                    // Already on the list — show success anyway (don't reveal it's a duplicate)
+                    // Already on the list  show success anyway (don't reveal it's a duplicate)
                     formSection.style.display = 'none';
                     success.classList.add('show');
                     return;
                 }
 
-                // Step 2: Email is new — insert it
+                // Step 2: Email is new  insert it
                 const insertRes = await fetch(SHEETDB_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -1719,7 +1719,7 @@
                 btn.classList.remove('loading');
                 btn.disabled = false;
                 emailInput.disabled = false;
-                errorMsg.textContent = 'Something went wrong — please try again.';
+                errorMsg.textContent = 'Something went wrong  please try again.';
                 errorMsg.classList.add('show');
             }
         }
