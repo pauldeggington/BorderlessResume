@@ -20,6 +20,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css" />
     <link rel="stylesheet" href="style.css">
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 
 <body>
@@ -49,6 +50,9 @@
                         <span class="btn-text">Notify Me When Live →</span>
                         <span class="spinner"></span>
                     </button>
+                </div>
+                <div class="cf-turnstile" data-sitekey="0x4AAAAAACoQUis_7HbOxAww" data-theme="light"
+                    data-callback="onTurnstileSuccess">
                 </div>
                 <div class="counter">
                     <span id="signup-count">...</span>

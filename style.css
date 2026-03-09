@@ -1270,6 +1270,12 @@
             font-weight: 500;
         }
 
+        .cf-turnstile {
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: center;
+        }
+
         /* ── SUCCESS STATE ── */
         .success {
             display: none;

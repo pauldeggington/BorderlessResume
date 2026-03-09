@@ -1,3 +1,9 @@
+let turnstileToken = null;
+
+function onTurnstileSuccess(token) {
+    turnstileToken = token;
+}
+
 const formLoadTime = Date.now();
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxNa6un_LfyXSbS7kKzYtntHA212mFlwXqI4dK-Rt6cMEKDFYAjn4-uhoKNazyrSKmX/exec';
 
@@ -15,6 +21,12 @@ async function submitEmail() {
         errorMsg.textContent = 'Please enter a valid email address.';
         errorMsg.classList.add('show');
         emailInput.focus();
+        return;
+    }
+
+    if (!turnstileToken) {
+        errorMsg.textContent = 'Please complete the security check.';
+        errorMsg.classList.add('show');
         return;
     }
 
@@ -88,7 +100,8 @@ async function submitEmail() {
             headers: { 'Content-Type': 'text/plain' },
             body: JSON.stringify({
                 email: email,
-                date: new Date().toISOString()
+                date: new Date().toISOString(),
+                token: turnstileToken
             })
         });
 
@@ -97,11 +110,21 @@ async function submitEmail() {
         if (data.result === 'success' || data.result === 'duplicate') {
             formSection.style.display = 'none';
             success.classList.add('show');
+            turnstile.reset();
+            turnstileToken = null;
             const current = parseInt(document.getElementById('signup-count').textContent) || 0;
             if (data.result === 'success') {
                 document.getElementById('signup-count').textContent = current + 1;
                 localStorage.setItem('signupCount', current + 1);
             }
+        } else if (data.result === 'bot') {
+            btn.classList.remove('loading');
+            btn.disabled = false;
+            emailInput.disabled = false;
+            errorMsg.textContent = 'Security check failed. Please try again.';
+            errorMsg.classList.add('show');
+            turnstile.reset();
+            turnstileToken = null;
         } else if (data.result === 'invalid') {
             btn.classList.remove('loading');
             btn.disabled = false;
