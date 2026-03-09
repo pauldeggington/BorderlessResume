@@ -1883,10 +1883,10 @@
             try {
                 const response = await fetch(`${SHEETDB_URL}/count`);
                 const data = await response.json();
-                const count = data.rows || 0;
-                document.getElementById('signup-count').textContent = count;
+                const liveCount = data.rows || 0;
+                const displayCount = liveCount + 47; // change 47 to however many offline signups you have
+                document.getElementById('signup-count').textContent = displayCount;
             } catch (err) {
-                // If it fails, just hide the counter gracefully
                 document.getElementById('signup-count').textContent = '';
             }
         }
