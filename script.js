@@ -5,7 +5,7 @@ function onTurnstileSuccess(token) {
 }
 
 const formLoadTime = Date.now();
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxNa6un_LfyXSbS7kKzYtntHA212mFlwXqI4dK-Rt6cMEKDFYAjn4-uhoKNazyrSKmX/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxXMPhBPum2lhq21sIjlJdSOvKiY0tnPqeUU0MlXk23DsFyFbPbwlU6M9D5K-6MaVR3/exec';
 
 async function submitEmail() {
     const emailInput = document.getElementById('email');
