@@ -1277,6 +1277,9 @@
                         <span class="spinner"></span>
                     </button>
                 </div>
+                <div class="counter">
+                    <span id="signup-count">...</span> people have signed up
+                </div>
                 <div class="error-msg" id="error-msg">Please enter a valid email address.</div>
                 <p class="form-note">
                     <!--<span>Free early access</span> · No spam · Unsubscribe any time-->
@@ -1875,6 +1878,24 @@
         document.getElementById('email').addEventListener('keydown', function (e) {
             if (e.key === 'Enter') submitEmail();
         });
+
+        async function loadSignupCount() {
+            try {
+                const response = await fetch(`${SHEETDB_URL}/count`);
+                const data = await response.json();
+                const count = data.rows || 0;
+                document.getElementById('signup-count').textContent = count;
+            } catch (err) {
+                // If it fails, just hide the counter gracefully
+                document.getElementById('signup-count').textContent = '';
+            }
+        }
+
+        // Load count on page open
+        loadSignupCount();
+
+        // Refresh count every 60 seconds
+        setInterval(loadSignupCount, 60000);
     </script>
 
 </body>
