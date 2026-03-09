@@ -28,6 +28,14 @@ async function submitEmail() {
     }
     // Client-side validations (matching server logic)
     const blockedDomains = [
+        // Test and placeholder domains
+        'example.com', 'example.org', 'example.net',
+        'test.com', 'test.org', 'testing.com',
+        'placeholder.com', 'domain.com', 'email.com',
+        'fake.com', 'noemail.com', 'nodomain.com',
+        'invalid.com', 'null.com', 'none.com',
+
+        // Disposable email services
         'mailinator.com', 'guerrillamail.com', 'tempmail.com',
         'throwaway.email', 'sharklasers.com', 'guerrillamailblock.com',
         'grr.la', 'guerrillamail.info', 'spam4.me', 'trashmail.com',
@@ -40,7 +48,15 @@ async function submitEmail() {
     const localPart = email.split('@')[0];
     const uuidPattern = /[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/i;
 
-    if (email.includes('+') || blockedDomains.includes(domain) || uuidPattern.test(email) || localPart.length > 40) {
+    const blockedLocalParts = [
+        'test', 'testing', 'fake', 'null', 'none',
+        'noreply', 'no-reply', 'donotreply', 'placeholder',
+        'example', 'sample', 'demo', 'trial', 'temp',
+        'temporary', 'disposable', 'throwaway', 'trash',
+        'spam', 'invalid', 'admin', 'root'
+    ];
+
+    if (email.includes('+') || blockedDomains.includes(domain) || uuidPattern.test(email) || localPart.length > 40 || blockedLocalParts.includes(localPart.toLowerCase())) {
         errorMsg.textContent = 'Please use a valid permanent email address.';
         errorMsg.classList.add('show');
         emailInput.focus();
