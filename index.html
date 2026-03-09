@@ -823,6 +823,177 @@
                 text-align: center;
             }
         }
+
+        .logo span {
+            color: #0A9396;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            animation: fadeIn .5s ease both;
+        }
+
+        @media (max-width: 500px) {
+            .card {
+                padding: 36px 24px;
+            }
+
+            .form-row {
+                flex-direction: column;
+            }
+
+            button {
+                justify-content: center;
+            }
+        }
+
+        /* ── FORM ── */
+        .form-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        input[type="email"] {
+            flex: 1;
+            padding: 14px 18px;
+            border: 1.5px solid #D8E4EC;
+            border-radius: 10px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            background: white;
+            color: #1C2B3A;
+            outline: none;
+            transition: border-color .2s, box-shadow .2s;
+        }
+
+        input[type="email"]:focus {
+            border-color: #0A9396;
+            box-shadow: 0 0 0 3px rgba(10, 147, 150, 0.12);
+        }
+
+        input[type="email"]::placeholder {
+            color: #9BB0C0;
+        }
+
+        button {
+            padding: 14px 22px;
+            background: #0F1E35;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.92rem;
+            font-weight: 500;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background .2s, transform .15s;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        button:hover:not(:disabled) {
+            background: #0A9396;
+            transform: translateY(-1px);
+        }
+
+        button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .spinner {
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin .6s linear infinite;
+            display: none;
+        }
+
+        button.loading .spinner {
+            display: block;
+        }
+
+        button.loading .btn-text {
+            display: none;
+        }
+
+        .form-note {
+            font-size: 0.78rem;
+            color: #9BB0C0;
+        }
+
+        .form-note span {
+            color: #0A9396;
+            font-weight: 500;
+        }
+
+        /* ── SUCCESS STATE ── */
+        .success {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            padding: 28px;
+            background: rgba(10, 147, 150, 0.06);
+            border: 1.5px solid rgba(10, 147, 150, 0.2);
+            border-radius: 14px;
+            margin-top: 4px;
+        }
+
+        .success.show {
+            display: flex;
+        }
+
+        .success-icon {
+            font-size: 2rem;
+        }
+
+        .success h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.1rem;
+            color: #0F1E35;
+            font-weight: 600;
+        }
+
+        .success p {
+            font-size: 0.85rem;
+            color: #5E7080;
+            line-height: 1.6;
+        }
+
+        /* ── ERROR ── */
+        .error-msg {
+            display: none;
+            font-size: 0.82rem;
+            color: #CA6702;
+            margin-top: 8px;
+            text-align: left;
+        }
+
+        .error-msg.show {
+            display: block;
+        }
     </style>
 </head>
 
@@ -846,10 +1017,27 @@
                 structure
                 for wherever you're going next.
             </p>
-            <form class="waitlist-form" id="form-section">
-                <input type="email" id="email" placeholder="your@email.com" required>
-                <button type="submit" id="submit-btn" class="btn-primary" onclick="submitEmail()">Join Waitlist</button>
-            </form>
+            <div id="form-section">
+                <div class="form-row">
+                    <input type="email" id="email" placeholder="your@email.com" autocomplete="email">
+                    <button id="submit-btn" onclick="submitEmail()">
+                        <span class="btn-text">Join Waitlist →</span>
+                        <span class="spinner"></span>
+                    </button>
+                </div>
+                <div class="error-msg" id="error-msg">Please enter a valid email address.</div>
+                <p class="form-note">
+                    <span>Free early access</span> · No spam · Unsubscribe any time
+                </p>
+            </div>
+
+            <div class="success" id="success">
+                <div class="success-icon">🎉</div>
+                <h3>You're on the list!</h3>
+                <p>We'll email you the moment we launch — plus a free guide:<br>
+                    <em>"How to present your Indian credentials to foreign recruiters."</em>
+                </p>
+            </div>
             <p class="form-note"><span>847 South Asian professionals</span> already on the list · Free early access</p>
         </div>
 
@@ -1103,11 +1291,27 @@
         <h2>Be first when we launch.</h2>
         <p>We're putting the finishing touches on BorderlessResume. Join the waitlist and get free early access — plus
             our guide: <em>"How to present your South Asian credentials to foreign recruiters."</em></p>
-        <form class="waitlist-form-2">
-            <input type="email" id="email" placeholder="your@email.com" required
-                style="flex:1;padding:14px 18px;border:1.5px solid var(--border);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:0.95rem;background:white;color:var(--text);outline:none;">
-            <button type="submit" id="submit-btn" class="btn-primary" onclick="submitEmail()">Join Waitlist</button>
-        </form>
+        <div id="form-section">
+            <div class="form-row">
+                <input type="email" id="email" placeholder="your@email.com" autocomplete="email">
+                <button id="submit-btn" onclick="submitEmail()">
+                    <span class="btn-text">Join Waitlist →</span>
+                    <span class="spinner"></span>
+                </button>
+            </div>
+            <div class="error-msg" id="error-msg">Please enter a valid email address.</div>
+            <p class="form-note">
+                <span>Free early access</span> · No spam · Unsubscribe any time
+            </p>
+        </div>
+
+        <div class="success" id="success">
+            <div class="success-icon">🎉</div>
+            <h3>You're on the list!</h3>
+            <p>We'll email you the moment we launch — plus a free guide:<br>
+                <em>"How to present your Indian credentials to foreign recruiters."</em>
+            </p>
+        </div>
         <p style="font-size:0.8rem;color:var(--muted);">No spam. Unsubscribe any time. Free early access for waitlist
             members.</p>
     </section>
