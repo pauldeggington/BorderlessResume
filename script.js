@@ -94,6 +94,22 @@ async function submitEmail() {
     btn.disabled = true;
     emailInput.disabled = true;
 
+    // Fetch user IP address and anonymize it via one-way cryptographic hash
+    let userIp = 'unknown';
+    try {
+        const ipResponse = await fetch('https://api.ipify.org?format=json');
+        const ipData = await ipResponse.json();
+
+        // Hash the IP immediately for GDPR/CCPA privacy compliance
+        const encoder = new TextEncoder();
+        const data = encoder.encode(ipData.ip + "salt_to_prevent_rainbow_tables");
+        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        userIp = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    } catch (e) {
+        console.warn('IP fetch failed');
+    }
+
     try {
         const response = await fetch(APPS_SCRIPT_URL, {
             method: 'POST',
@@ -101,7 +117,8 @@ async function submitEmail() {
             body: JSON.stringify({
                 email: email,
                 date: new Date().toISOString(),
-                token: turnstileToken
+                token: turnstileToken,
+                ip: userIp
             })
         });
 
@@ -117,11 +134,11 @@ async function submitEmail() {
                 document.getElementById('signup-count').textContent = current + 1;
                 localStorage.setItem('signupCount', current + 1);
             }
-        } else if (data.result === 'bot') {
+        } else if (data.result === 'bot' || data.result === 'rate_limited') {
             btn.classList.remove('loading');
             btn.disabled = false;
             emailInput.disabled = false;
-            errorMsg.textContent = 'Security check failed. Please try again.';
+            errorMsg.textContent = data.result === 'rate_limited' ? 'Too many requests from this network. Try again later.' : 'Security check failed. Please try again.';
             errorMsg.classList.add('show');
             turnstile.reset();
             turnstileToken = null;
