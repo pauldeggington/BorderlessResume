@@ -1864,6 +1864,9 @@
             const formSection = document.getElementById('form-section');
 
             const email = emailInput.value.trim();
+            const current = parseInt(document.getElementById('signup-count').textContent) || 0;
+            document.getElementById('signup-count').textContent = current + 1;
+            localStorage.setItem('signupCount', current + 1);
 
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
