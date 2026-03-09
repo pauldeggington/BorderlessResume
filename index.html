@@ -1858,6 +1858,41 @@
                 return;
             }
 
+            // Client-side validations (matching server logic)
+            const blockedDomains = [
+                'mailinator.com', 'guerrillamail.com', 'tempmail.com',
+                'throwaway.email', 'sharklasers.com', 'guerrillamailblock.com',
+                'grr.la', 'guerrillamail.info', 'spam4.me', 'trashmail.com',
+                'yopmail.com', 'maildrop.cc', 'dispostable.com', 'fakeinbox.com',
+                'tempinbox.com', 'mailnull.com', 'spamgourmet.com', 'trashmail.me',
+                'discard.email', 'spamex.com', 'mailexpire.com', 'filzmail.com'
+            ];
+
+            const domain = email.split('@')[1];
+            const localPart = email.split('@')[0];
+            const uuidPattern = /[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/i;
+
+            if (email.includes('+') || blockedDomains.includes(domain) || uuidPattern.test(email) || localPart.length > 40) {
+                errorMsg.textContent = 'Please use a valid permanent email address.';
+                errorMsg.classList.add('show');
+                emailInput.focus();
+                return;
+            }
+
+            // Spam prevention timeout (60 seconds)
+            const lastSubmit = localStorage.getItem('lastSubmitTime');
+            const now = Date.now();
+            if (lastSubmit) {
+                const timePassed = now - parseInt(lastSubmit);
+                if (timePassed < 60000) {
+                    const timeLeft = Math.ceil((60000 - timePassed) / 1000);
+                    errorMsg.textContent = `Please wait ${timeLeft} seconds before trying again.`;
+                    errorMsg.classList.add('show');
+                    return;
+                }
+            }
+            localStorage.setItem('lastSubmitTime', now.toString());
+
             errorMsg.classList.remove('show');
             btn.classList.add('loading');
             btn.disabled = true;
@@ -1883,6 +1918,12 @@
                         document.getElementById('signup-count').textContent = current + 1;
                         localStorage.setItem('signupCount', current + 1);
                     }
+                } else if (data.result === 'invalid') {
+                    btn.classList.remove('loading');
+                    btn.disabled = false;
+                    emailInput.disabled = false;
+                    errorMsg.textContent = 'Please use a valid permanent email address.';
+                    errorMsg.classList.add('show');
                 } else {
                     throw new Error('Failed');
                 }
