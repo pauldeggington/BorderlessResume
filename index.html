@@ -1326,9 +1326,9 @@
 
             const email = emailInput.value.trim();
 
-            // Basic validation
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
+                errorMsg.textContent = 'Please enter a valid email address.';
                 errorMsg.classList.add('show');
                 emailInput.focus();
                 return;
@@ -1340,7 +1340,19 @@
             emailInput.disabled = true;
 
             try {
-                const response = await fetch(SHEETDB_URL, {
+                // Step 1: Check if email already exists
+                const checkRes = await fetch(`${SHEETDB_URL}/search?Email=${encodeURIComponent(email)}`);
+                const existing = await checkRes.json();
+
+                if (existing.length > 0) {
+                    // Already on the list — show success anyway (don't reveal it's a duplicate)
+                    formSection.style.display = 'none';
+                    success.classList.add('show');
+                    return;
+                }
+
+                // Step 2: Email is new — insert it
+                const insertRes = await fetch(SHEETDB_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -1351,12 +1363,13 @@
                     })
                 });
 
-                if (response.ok) {
+                if (insertRes.ok) {
                     formSection.style.display = 'none';
                     success.classList.add('show');
                 } else {
-                    throw new Error('Server error');
+                    throw new Error('Insert failed');
                 }
+
             } catch (err) {
                 btn.classList.remove('loading');
                 btn.disabled = false;
