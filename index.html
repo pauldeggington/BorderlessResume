@@ -1841,7 +1841,7 @@
     <script>
 
         //const SHEETDB_URL = 'https://sheetdb.io/api/v1/0f3i2uykydbh6';
-        const SHEETDB_URL = 'https://script.google.com/macros/s/AKfycbzpOLsyOsz9cmysYGQUKHdSv4woJ9Ws8SfYjXao16EH36yAb6heWS9otx5GVslix4c-/exec';
+        const APPS_SCRIPT_URL = 'YOUR_NEW_DEPLOYMENT_URL_HERE';
 
         async function submitEmail() {
             const emailInput = document.getElementById('email');
@@ -1851,7 +1851,6 @@
             const formSection = document.getElementById('form-section');
 
             const email = emailInput.value.trim();
-
 
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
@@ -1867,46 +1866,62 @@
             emailInput.disabled = true;
 
             try {
-                // Step 1: Check if email already exists
-                const checkRes = await fetch(`${SHEETDB_URL}/search?Email=${encodeURIComponent(email)}`);
-                const existing = await checkRes.json();
-
-                if (existing.length > 0) {
-                    // Already on the list  show success anyway (don't reveal it's a duplicate)
-                    formSection.style.display = 'none';
-                    success.classList.add('show');
-                    return;
-                }
-
-                // Step 2: Email is new  insert it
-                const insertRes = await fetch(SHEETDB_URL, {
+                const response = await fetch(APPS_SCRIPT_URL, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 'Content-Type': 'text/plain' },
                     body: JSON.stringify({
-                        data: [{
-                            Email: email,
-                            Date: new Date().toISOString()
-                        }]
+                        email: email,
+                        date: new Date().toISOString()
                     })
                 });
 
-                if (insertRes.ok) {
+                const data = await response.json();
+
+                if (data.result === 'success' || data.result === 'duplicate') {
                     formSection.style.display = 'none';
                     success.classList.add('show');
+                    const current = parseInt(document.getElementById('signup-count').textContent) || 0;
+                    if (data.result === 'success') {
+                        document.getElementById('signup-count').textContent = current + 1;
+                        localStorage.setItem('signupCount', current + 1);
+                    }
                 } else {
-                    throw new Error('Insert failed');
+                    throw new Error('Failed');
                 }
 
             } catch (err) {
                 btn.classList.remove('loading');
                 btn.disabled = false;
                 emailInput.disabled = false;
-                errorMsg.textContent = 'Something went wrong  please try again.';
+                errorMsg.textContent = 'Something went wrong, please try again.';
                 errorMsg.classList.add('show');
             }
         }
 
-        // Submit on Enter key
+        async function loadSignupCount() {
+            const cached = localStorage.getItem('signupCount');
+            if (cached) {
+                document.getElementById('signup-count').textContent = cached;
+            }
+
+            try {
+                const response = await fetch(APPS_SCRIPT_URL);
+                const data = await response.json();
+                const liveCount = data.rows || 0;
+                const displayCount = liveCount + 47;
+                document.getElementById('signup-count').textContent = displayCount;
+                localStorage.setItem('signupCount', displayCount);
+            } catch (err) {
+                document.getElementById('signup-count').textContent = cached || '';
+            }
+        }
+
+        loadSignupCount();
+        setInterval(loadSignupCount, 60000);
+
+        document.getElementById('email').addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') submitEmail();
+        });
     </script>
 
     <script>
