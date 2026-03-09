@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1D4NRC909V"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-1D4NRC909V');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GDPR Information — BorderlessCV</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --navy: #0F1E35;
+            --teal: #0A9396;
+            --cream: #FAF7F2;
+            --text: #1C2B3A;
+            --muted: #5E7080;
+            --border: #D8E4EC;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* ─── NAV ─── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 40px;
+            background: rgba(250, 247, 242, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-family: 'Fraunces', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--navy);
+            letter-spacing: -0.02em;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--teal);
+        }
+
+        nav a.back-link {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color .2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        nav a.back-link:hover {
+            color: var(--teal);
+        }
+
+        /* ─── LEGAL CONTENT ─── */
+        .legal-section {
+            padding: 140px 40px 80px;
+            flex: 1;
+        }
+
+        .legal-inner {
+            max-width: 760px;
+            margin: 0 auto;
+            background: white;
+            padding: 60px 80px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 40px rgba(15, 30, 53, 0.03);
+        }
+
+        .legal-header {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .legal-header h1 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2rem, 3vw, 2.6rem);
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+
+        .legal-header p {
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .legal-content h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin: 40px 0 16px;
+            letter-spacing: -0.01em;
+        }
+
+        .legal-content h2:first-child {
+            margin-top: 0;
+        }
+
+        .legal-content p,
+        .legal-content li {
+            font-size: 1.05rem;
+            color: var(--muted);
+            line-height: 1.75;
+            margin-bottom: 16px;
+        }
+
+        .legal-content ul {
+            margin: 0 0 24px 24px;
+        }
+
+        .legal-content a {
+            color: var(--teal);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .legal-content a:hover {
+            text-decoration: underline;
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            padding: 24px 80px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--cream);
+        }
+
+        footer p {
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        footer .logo-sm {
+            font-family: 'Fraunces', serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        footer .logo-sm span {
+            color: var(--teal);
+        }
+
+        footer .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        footer .footer-links a {
+            font-size: 0.8rem;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        footer .footer-links a:hover {
+            color: var(--teal);
+        }
+
+        @media (max-width: 900px) {
+            nav {
+                padding: 14px 24px;
+            }
+
+            .legal-section {
+                padding: 100px 24px 60px;
+            }
+
+            .legal-inner {
+                padding: 40px 32px;
+            }
+
+            footer {
+                padding: 24px 32px;
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">Borderless<span>CV</span></a>
+        <a href="index.html" class="back-link">← Back to Home</a>
+    </nav>
+
+    <section class="legal-section">
+        <div class="legal-inner">
+            <div class="legal-header">
+                <h1>GDPR Information (EU)</h1>
+                <p>Last updated: March 2026</p>
+            </div>
+            <div class="legal-content">
+                <h2>1. Your Rights Under GDPR</h2>
+                <p>If you are a resident of the European Economic Area (EEA), you have specific data protection rights
+                    under the General Data Protection Regulation (GDPR). BorderlessCV aims to take reasonable steps to
+                    allow you to correct, amend, delete, or limit the use of your Personal Data.</p>
+                <p>If you wish to be informed what Personal Data we hold about you and if you want it to be removed from
+                    our systems, please contact us.</p>
+
+                <h2>2. Specific Rights</h2>
+                <p>In certain circumstances, you have the following data protection rights:</p>
+                <ul>
+                    <li><strong>The right to access, update or to delete the information we have on you:</strong>
+                        Whenever made possible, you can access, update or request deletion of your Personal Data
+                        directly within your account settings section or by contacting us.</li>
+                    <li><strong>The right of rectification:</strong> You have the right to have your information
+                        rectified if that information is inaccurate or incomplete.</li>
+                    <li><strong>The right to object:</strong> You have the right to object to our processing of your
+                        Personal Data.</li>
+                    <li><strong>The right of restriction:</strong> You have the right to request that we restrict the
+                        processing of your personal information.</li>
+                    <li><strong>The right to data portability:</strong> You have the right to be provided with a copy of
+                        the information we have on you in a structured, machine-readable and commonly used format.</li>
+                    <li><strong>The right to withdraw consent:</strong> You also have the right to withdraw your consent
+                        at any time where BorderlessCV relied on your consent to process your personal information.</li>
+                </ul>
+
+                <h2>3. Exercising Your Rights</h2>
+                <p>Please note that we may ask you to verify your identity before responding to such requests. You have
+                    the right to complain to a Data Protection Authority about our collection and use of your Personal
+                    Data. For more information, please contact your local data protection authority in the EEA.</p>
+
+                <h2>4. Processing Your Data Outside the EEA</h2>
+                <p>As our servers and third-party vendors (e.g., Google, SheetDB) may be located outside of the European
+                    Economic Area, your information may be transferred to and maintained on computers located outside of
+                    your state, province, country or other governmental jurisdiction where the data protection laws may
+                    differ from those from your jurisdiction. We take all steps reasonably necessary to ensure that your
+                    data is treated securely and in accordance with this Privacy Policy and the GDPR.</p>
+
+                <h2>5. Contact Us</h2>
+                <p>If you have questions about how we comply with the GDPR naturally or wish to exercise your rights,
+                    please reach out to us directly at <a
+                        href="mailto:privacy@borderlesscv.com">privacy@borderlesscv.com</a>.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="logo-sm">Borderless<span>CV</span></div>
+        <p>© 2026 BorderlessCV · Built for South Asian professionals going global</p>
+        <div class="footer-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="gdpr.html">GDPR (EU)</a>
+        </div>
+    </footer>
+
+</body>
+
+</html>

@@ -1209,9 +1209,40 @@
             text-transform: uppercase;
         }
 
+        /* ── FOOTER EXPANDED ── */
+        footer {
+            padding: 40px 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            font-size: 0.8rem;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--teal);
+        }
+
         @media (max-width: 900px) {
             .founder-story {
                 padding: 60px 32px;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+                padding: 32px 24px;
             }
         }
     </style>
@@ -1745,9 +1776,12 @@
 
     <!-- FOOTER -->
     <footer>
-        <div class="logo-sm">Borderless<span>Resume</span></div>
+        <div class="logo-sm">Borderless<span>CV</span></div>
         <p>© 2026 BorderlessCV · Built for South Asian professionals going global</p>
-        <p style="font-size:0.8rem;color:var(--muted);">Made with ♥ for the South Asian professional community</p>
+        <div class="footer-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="gdpr.html">GDPR (EU)</a>
+        </div>
     </footer>
 
     <!--<script>
