@@ -30,24 +30,22 @@ async function submitEmail() {
         return;
     }
 
-    // Time-based honeypot: check if form was filled too quickly (under 2 seconds)
     const timeSpent = Date.now() - formLoadTime;
     if (timeSpent < 2000) {
-        // Fake a successful submission
+
         formSection.style.display = 'none';
         success.classList.add('show');
         return;
     }
-    // Client-side validations (matching server logic)
+
     const blockedDomains = [
-        // Test and placeholder domains
+
         'example.com', 'example.org', 'example.net',
         'test.com', 'test.org', 'testing.com',
         'placeholder.com', 'domain.com', 'email.com',
         'fake.com', 'noemail.com', 'nodomain.com',
         'invalid.com', 'null.com', 'none.com',
 
-        // Disposable email services
         'mailinator.com', 'guerrillamail.com', 'tempmail.com',
         'throwaway.email', 'sharklasers.com', 'guerrillamailblock.com',
         'grr.la', 'guerrillamail.info', 'spam4.me', 'trashmail.com',
@@ -75,7 +73,6 @@ async function submitEmail() {
         return;
     }
 
-    // Spam prevention timeout (60 seconds)
     const lastSubmit = localStorage.getItem('lastSubmitTime');
     const now = Date.now();
     if (lastSubmit) {
@@ -94,13 +91,11 @@ async function submitEmail() {
     btn.disabled = true;
     emailInput.disabled = true;
 
-    // Fetch user IP address and anonymize it via one-way cryptographic hash
     let userIp = 'unknown';
     try {
         const ipResponse = await fetch('https://api.ipify.org?format=json');
         const ipData = await ipResponse.json();
 
-        // Hash the IP immediately for GDPR/CCPA privacy compliance
         const encoder = new TextEncoder();
         const data = encoder.encode(ipData.ip + "salt_to_prevent_rainbow_tables");
         const hashBuffer = await crypto.subtle.digest('SHA-256', data);
@@ -186,18 +181,15 @@ async function loadSignupCount() {
         localStorage.setItem('signupCount', displayCount);
     } catch (err) {
         console.warn("Could not load live signup count:", err);
-        // Keep the cached version if fetch fails
+
         if (cached) counterDisplay.textContent = cached;
     }
 }
 
-// Load count on page open
 loadSignupCount();
 
-// Refresh count every 60 seconds
 setInterval(loadSignupCount, 60000);
 
-// Add event listener for Enter key
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('email').addEventListener('keydown', function (e) {
         if (e.key === 'Enter') submitEmail();

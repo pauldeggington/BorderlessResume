@@ -2,7 +2,6 @@
 (function () {
     'use strict';
 
-    // ── Flags (inline SVG, no CDN needed) ────────────────
     const CV_FLAGS = {
         uk: `<svg viewBox="0 0 200 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><rect width="200" height="270" fill="#00247D"/><line x1="0" y1="0" x2="200" y2="270" stroke="white" stroke-width="36"/><line x1="200" y1="0" x2="0" y2="270" stroke="white" stroke-width="36"/><line x1="0" y1="0" x2="200" y2="270" stroke="#CF142B" stroke-width="22"/><line x1="200" y1="0" x2="0" y2="270" stroke="#CF142B" stroke-width="22"/><line x1="100" y1="0" x2="100" y2="270" stroke="white" stroke-width="54"/><line x1="0" y1="135" x2="200" y2="135" stroke="white" stroke-width="54"/><line x1="100" y1="0" x2="100" y2="270" stroke="#CF142B" stroke-width="32"/><line x1="0" y1="135" x2="200" y2="135" stroke="#CF142B" stroke-width="32"/></svg>`,
         ca: `<svg viewBox="0 0 200 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><rect width="200" height="270" fill="white"/><rect x="0" width="50" height="270" fill="#FF0000"/><rect x="150" width="50" height="270" fill="#FF0000"/><polygon points="100,50 112,88 152,88 120,112 132,150 100,126 68,150 80,112 48,88 88,88" fill="#FF0000"/></svg>`,
@@ -12,7 +11,6 @@
         au: `<svg viewBox="0 0 200 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><rect width="200" height="270" fill="#00008B"/><line x1="0" y1="0" x2="100" y2="135" stroke="white" stroke-width="18"/><line x1="100" y1="0" x2="0" y2="135" stroke="white" stroke-width="18"/><line x1="0" y1="0" x2="100" y2="135" stroke="#C8102E" stroke-width="10"/><line x1="100" y1="0" x2="0" y2="135" stroke="#C8102E" stroke-width="10"/><line x1="50" y1="0" x2="50" y2="135" stroke="white" stroke-width="28"/><line x1="0" y1="67" x2="100" y2="67" stroke="white" stroke-width="28"/><line x1="50" y1="0" x2="50" y2="135" stroke="#C8102E" stroke-width="17"/><line x1="0" y1="67" x2="100" y2="67" stroke="#C8102E" stroke-width="17"/><text x="150" y="160" text-anchor="middle" font-size="30" fill="white">✦</text><text x="138" y="72" text-anchor="middle" font-size="16" fill="white">✦</text><text x="170" y="82" text-anchor="middle" font-size="16" fill="white">✦</text><text x="138" y="110" text-anchor="middle" font-size="16" fill="white">✦</text><text x="170" y="110" text-anchor="middle" font-size="16" fill="white">✦</text></svg>`
     };
 
-    // ── Destinations ──────────────────────────────────────
     const CV_DESTS = [
         {
             label: 'the UK', color: '#C8102E', accentColor: '#CF142B', flagKey: 'uk',
@@ -100,7 +98,6 @@
         }
     ];
 
-    // ── DOM refs ──────────────────────────────────────────
     const slotWrap = document.getElementById('cvSlotWrap');
     const slotTrack = document.getElementById('cvSlotTrack');
     const cvZone = document.getElementById('cvZone');
@@ -119,7 +116,6 @@
     const INTERVAL = 4200;
     let current = 0, busy = false, lineH = 0;
 
-    // ── Load after content ────────────────────────────────
     function loadAfter(dest) {
         document.getElementById('cvAftFlag').innerHTML = CV_FLAGS[dest.flagKey];
         document.getElementById('cvAftLocation').textContent = dest.location;
@@ -129,7 +125,6 @@
         aftPillText.textContent = dest.pill;
     }
 
-    // ── Floaters ──────────────────────────────────────────
     let floaterEls = [], floaterTweens = [];
     function buildFloaters(dest) {
         floaterTweens.forEach(t => t.kill()); floaterTweens = [];
@@ -158,7 +153,6 @@
         });
     }
 
-    // ── Scan animation ────────────────────────────────────
     function runScan(dest, onComplete) {
         const docH = cvDoc.getBoundingClientRect().height;
         gsap.set(cvAfter, { clipPath: 'inset(0 0 100% 0)' });
@@ -189,7 +183,6 @@
         }, '-=0.8');
     }
 
-    // ── Reset ─────────────────────────────────────────────
     function resetDoc() {
         gsap.set(cvAfter, { clipPath: 'inset(0 0 100% 0)' });
         gsap.set(cvBefore, { opacity: 1 });
@@ -198,7 +191,6 @@
         pgNum.style.color = '#1C2B3A';
     }
 
-    // ── Slot scroll ───────────────────────────────────────
     function scrollSlot(idx) {
         const target = idx === 0 ? -(N * 1.2) + 'em' : -(idx * 1.2) + 'em';
         gsap.to(slotTrack, {
@@ -210,7 +202,6 @@
         gsap.fromTo(slotWrap, { scaleY: .85, opacity: .6 }, { scaleY: 1, opacity: 1, duration: .35, ease: 'back.out(2)', delay: .08 });
     }
 
-    // ── Advance cycle ─────────────────────────────────────
     function advance() {
         if (busy) return; busy = true;
         const nextIdx = (current + 1) % N;
@@ -226,7 +217,6 @@
         });
     }
 
-    // ── Init (wait for fonts) ─────────────────────────────
     const measure = document.createElement('span');
     measure.style.cssText = `font-family:'Fraunces',serif;font-style:italic;font-weight:700;line-height:1.2;visibility:hidden;position:absolute;white-space:nowrap;`;
     document.body.appendChild(measure);
@@ -260,14 +250,11 @@
         buildFloaters(CV_DESTS[0]);
         resetDoc();
 
-        // Entrance animations
         gsap.from('.hero-left', { opacity: 0, y: 20, duration: .7, ease: 'power2.out', delay: .15 });
         gsap.from('.hero-right', { opacity: 0, x: 30, duration: .7, ease: 'back.out(1.3)', delay: .35 });
 
-        // Gentle float
         gsap.to('.cv-wrap', { y: -10, duration: 3.2, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 1.4 });
 
-        // First scan
         gsap.delayedCall(1.6, () => {
             runScan(CV_DESTS[0], () => {
                 gsap.delayedCall(1.0, () => { resetDoc(); busy = false; });

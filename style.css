@@ -29,7 +29,6 @@
             overflow-x: hidden;
         }
 
-        /* ─── NAV ─── */
         nav {
             position: fixed;
             top: 0;
@@ -69,7 +68,6 @@
             color: var(--teal);
         }
 
-        /* ─── HERO ─── */
         .hero {
             min-height: 100vh;
             display: grid;
@@ -80,17 +78,6 @@
             position: relative;
             overflow: hidden;
         }
-
-        /*.hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(ellipse 70% 60% at 80% 40%, rgba(10, 147, 150, 0.08) 0%, transparent 70%),
-                radial-gradient(ellipse 50% 50% at 20% 80%, rgba(233, 196, 106, 0.12) 0%, transparent 60%);
-            pointer-events: none;
-            overflow: visible;
-        }*/
 
         .hero-eyebrow {
             display: inline-flex;
@@ -179,7 +166,6 @@
             font-weight: 500;
         }
 
-        /* ─── WAITLIST FORM ─── */
         .waitlist-form {
             display: flex;
             gap: 10px;
@@ -239,7 +225,6 @@
             font-weight: 500;
         }
 
-        /* ─── HERO CARD ─── */
         .hero-visual {
             animation: fadeUp .7s .2s ease both;
         }
@@ -375,7 +360,6 @@
             border-radius: 50%;
         }
 
-        /* ─── TESTIMONIALS ─── */
         .testimonials {
             padding: 80px 0 20px;
             background: var(--cream);
@@ -406,7 +390,7 @@
             display: flex;
             gap: 24px;
             white-space: nowrap;
-            /* width width to accommodate all cloned items for smooth infinite scroll */
+            
             width: max-content;
             animation: scroll 40s linear infinite;
             padding: 20px 0;
@@ -507,7 +491,6 @@
             border-radius: 100px;
         }
 
-        /* ─── PROBLEM STRIP ─── */
         .problem-strip {
             background: var(--navy);
             padding: 60px 80px;
@@ -548,7 +531,6 @@
             line-height: 1.65;
         }
 
-        /* ─── HOW IT WORKS ─── */
         .how {
             padding: 100px 80px;
             max-width: 1100px;
@@ -628,7 +610,6 @@
             line-height: 1.6;
         }
 
-        /* ─── COUNTRIES ─── */
         .countries {
             background: white;
             padding: 80px;
@@ -687,7 +668,6 @@
             line-height: 1.4;
         }
 
-        /* ─── WHY DIFFERENT ─── */
         .why {
             padding: 100px 80px;
             max-width: 1100px;
@@ -776,7 +756,6 @@
             color: #E76F51;
         }
 
-        /* ─── SOCIAL PROOF ─── */
         .proof {
             background: var(--navy);
             padding: 80px;
@@ -821,7 +800,6 @@
             line-height: 1.5;
         }
 
-        /* ─── BOTTOM CTA ─── */
         .cta-section {
             padding: 100px 80px;
             text-align: center;
@@ -853,7 +831,6 @@
             margin: 0 auto 12px;
         }
 
-        /* ─── FOOTER ─── */
         footer {
             padding: 24px 80px;
             border-top: 1px solid var(--border);
@@ -878,7 +855,6 @@
             color: var(--teal);
         }
 
-        /* ─── ANIMATIONS ─── */
         @keyframes fadeUp {
             from {
                 opacity: 0;
@@ -903,7 +879,6 @@
             }
         }
 
-        /* ─── RESPONSIVE ─── */
         @media (max-width: 1130px) {
             .hero {
                 padding: 100px 32px 60px;
@@ -1000,7 +975,6 @@
             }
         }
 
-        /* ── FORM ── */
         .form-row {
             display: flex;
             gap: 8px;
@@ -1084,7 +1058,6 @@
             font-weight: 500;
         }
 
-        /* ── SUCCESS STATE ── */
         .success {
             display: none;
             flex-direction: column;
@@ -1118,7 +1091,6 @@
             line-height: 1.6;
         }
 
-        /* ── ERROR ── */
         .error-msg {
             display: none;
             font-size: 0.82rem;
@@ -1131,7 +1103,6 @@
             display: block;
         }
 
-        /* ── FOUNDER STORY ── */
         .founder-story {
             padding: 100px 80px;
             background: white;
@@ -1199,7 +1170,6 @@
             text-transform: uppercase;
         }
 
-        /* ── FOOTER EXPANDED ── */
         footer {
             padding: 40px 80px;
             display: flex;
@@ -1236,7 +1206,6 @@
             }
         }
 
-        /* ── COUNTER ── */
         .counter {
             display: flex;
             align-items: center;
@@ -1287,7 +1256,6 @@
             justify-content: center;
         }
 
-        /* ── SUCCESS STATE ── */
         .success {
             display: none;
             flex-direction: column;
@@ -1321,7 +1289,6 @@
             line-height: 1.6;
         }
 
-        /* ── ERROR ── */
         .error-msg {
             display: none;
             font-size: 0.82rem;
@@ -1334,7 +1301,6 @@
             display: block;
         }
 
-        /* ── FOUNDER STORY ── */
         .founder-story {
             padding: 100px 80px;
             background: white;
@@ -1402,7 +1368,6 @@
             text-transform: uppercase;
         }
 
-        /* ── FOOTER EXPANDED ── */
         footer {
             padding: 40px 80px;
             display: flex;
@@ -1439,7 +1404,6 @@
             }
         }
 
-        /* ── COUNTER ── */
         .counter {
             display: flex;
             align-items: center;
@@ -1474,9 +1438,6 @@
             flex-shrink: 0;
         }
 
-
-
-
         .hero {
             --cv-navy: #0F1E35;
             --cv-teal: #0A9396;
@@ -1506,13 +1467,11 @@
             max-width: 620px;
         }
 
-        /* ── Slot machine (animated destination in headline) ── */
         .cv-slot-wrap {
             display: inline-block;
             position: relative;
             overflow: hidden;
             vertical-align: -0.21em;
-            /* Shift down to match baselines */
         }
 
         .cv-slot-track {
@@ -1538,7 +1497,6 @@
             overflow: visible;
         }
 
-        /* ── Right: CV animation zone ── */
         .hero-right {
             flex: 0 1 440px;
             min-width: 300px;
@@ -1551,7 +1509,6 @@
             padding: 0;
         }
 
-        /* Floaters */
         .cv-floater {
             position: absolute;
             pointer-events: none;
@@ -1586,7 +1543,6 @@
             border-radius: 50%;
         }
 
-        /* CV document wrapper */
         .cv-wrap {
             position: relative;
             margin: 0 auto;
@@ -1604,7 +1560,6 @@
             box-sizing: border-box;
         }
 
-        /* ── BEFORE layer ── */
         .cv-before {
             position: relative;
             padding: 13px 14px;
@@ -1686,7 +1641,6 @@
             font-variant: small-caps;
         }
 
-        /* ── AFTER layer (flag-backed, revealed by scanner) ── */
         .cv-after {
             position: absolute;
             inset: 0;
@@ -1869,7 +1823,6 @@
             background: var(--cv-teal2);
         }
 
-        /* Scanner line */
         .cv-scanner {
             position: absolute;
             left: -2px;
@@ -1898,7 +1851,6 @@
             pointer-events: none;
         }
 
-        /* Page badge */
         .cv-page-badge {
             position: absolute;
             bottom: -28px;
@@ -1919,13 +1871,11 @@
             transition: color .3s;
         }
 
-        /* ── Mobile ── */
         @media (max-width: 1130px) {
             .hero {
                 flex-direction: column !important;
                 align-items: center;
                 gap: 60px;
-                /* Big padding between left and right */
                 padding: 100px 20px 64px;
                 margin-top: 80px;
             }
@@ -1940,7 +1890,6 @@
                 align-items: center;
             }
 
-            /* your existing .hero-sub, .form-row etc will centre naturally */
             .form-row {
                 justify-content: center;
             }
@@ -1964,7 +1913,6 @@
                 display: none;
             }
 
-            /* slot line can wrap on mobile */
             .cv-hl-slot-line {
                 white-space: normal;
             }
