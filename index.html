@@ -19,9 +19,13 @@
         href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=1">
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-</head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;
+      500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
 
 <body>
 
@@ -31,18 +35,32 @@
     </nav>
 
     <!-- HERO -->
+
     <section class="hero">
+
+        <!-- ── LEFT: your existing copy + form, untouched ── -->
         <div class="hero-left">
+
             <div class="hero-eyebrow">Built by a team of experts who have been through this</div>
-            <h1>Your South Asian CV,<br><em>rebuilt</em> for the<br><span class="underline-sand">world</span>.</h1>
+
+            <h1 class="hero-h1">
+                <span class="hero-h1-line1">Your South Asian CV,</span>
+                <span class="hero-h1-line2">
+                    <em>rebuilt</em>&nbsp;for <span class="cv-slot-wrap" id="cvSlotWrap">
+                        <div class="cv-slot-track" id="cvSlotTrack"></div>
+                    </span>
+                </span>
+            </h1>
+
             <p class="hero-sub">
-                Your local CV got you this far. Now you want a CV for <strong>UK, Canada, UAE, Australia, Germany, and
-                    the USA</strong>
+                Your local CV got you this far. Now you want a CV for
+                <strong>UK, Canada, UAE, Australia, Germany, and the USA</strong>
                 or remote roles at global companies.<br><br>
                 DesiCV converts your South Asian CV into the right format, right terminology, and right
                 structure for wherever you're going next.
             </p>
-            <div id="form-section" id="">
+
+            <div id="form-section">
                 <div class="form-row">
                     <input type="email" id="email" placeholder="your@email.com" autocomplete="email">
                     <button id="submit-btn" onclick="submitEmail()">
@@ -70,57 +88,128 @@
                     <em>"How to present your South Asian credentials to foreign recruiters."</em>
                 </p>
             </div>
-            <!--<p class="form-note"><span>847 South Asian professionals</span> already on the list · Free early access</p>-->
-        </div>
 
-        <div class="hero-visual">
-            <div class="cv-card">
-                <div class="cv-line dark w40"></div>
-                <div class="cv-line w70" style="margin-top:4px"></div>
-                <div class="cv-section-label">Experience</div>
-                <div class="cv-line w85"></div>
-                <div class="cv-line w60"></div>
-                <div class="cv-line w70"></div>
-                <div class="cv-section-label">Education</div>
-                <div class="cv-line dark w55"></div>
-                <div class="cv-line w40"></div>
-            </div>
+        </div><!-- /hero-left -->
 
-            <div class="arrow-down">↓</div>
+        <!-- ── RIGHT: CV scanner animation ── -->
+        <div class="hero-right" id="cvZone">
 
-            <div class="result-cards">
-                <div class="result-card">
-                    <div class="flag"><span class="fi fi-au"></span></div>
-                    <div class="country">Australia · CV Format</div>
-                    <div class="status">Optimised</div>
+            <!-- floaters injected by JS -->
+
+            <div class="cv-wrap" id="cvWrap">
+                <div class="cv-doc" id="cvDoc">
+
+                    <!-- BEFORE: cluttered South Asian format -->
+                    <div class="cv-before" id="cvBefore">
+                        <div class="cv-bef-name">RAJESH KUMAR VENKATARAMAN</div>
+                        <div class="cv-bef-contact">
+                            +91-9876543210 &nbsp;|&nbsp; rajesh.venkat@gmail.com &nbsp;|&nbsp; Flat 4B, Shivaji Nagar,
+                            Pune – 411005<br>
+                            D.O.B: 14/03/1989 &nbsp;|&nbsp; Nationality: Indian &nbsp;|&nbsp; Marital Status: Married
+                        </div>
+                        <div class="cv-bef-section">OBJECTIVE</div>
+                        <div class="cv-bef-para">To seek a challenging position in a reputed organisation where I can
+                            utilise my skills and contribute to the growth of the organisation while enhancing my own
+                            professional development.</div>
+                        <div class="cv-bef-section">ACADEMIC QUALIFICATIONS</div>
+                        <table class="cv-bef-table">
+                            <tr>
+                                <td><span class="cv-bef-bold">B.E. Computer Science</span></td>
+                                <td>Pune University</td>
+                                <td>2011</td>
+                                <td>72.4%</td>
+                            </tr>
+                            <tr>
+                                <td>XII (HSC)</td>
+                                <td>Maharashtra Board</td>
+                                <td>2007</td>
+                                <td>88.2%</td>
+                            </tr>
+                            <tr>
+                                <td>X (SSC)</td>
+                                <td>Maharashtra Board</td>
+                                <td>2005</td>
+                                <td>91.0%</td>
+                            </tr>
+                        </table>
+                        <div class="cv-bef-section">WORK EXPERIENCE</div>
+                        <div class="cv-bef-para"><span class="cv-bef-bold cv-bef-underline">Senior Software
+                                Engineer</span> — TCS, Pune<span class="cv-bef-small"> (June 2014 – Present)</span>
+                        </div>
+                        <div class="cv-bef-indent">• Responsible for development and maintenance of enterprise Java
+                            applications for US banking client. Working on Spring Boot, Hibernate, Oracle DB. Handling
+                            code reviews and mentoring junior developers. Awarded Employee of the Quarter Q3 2022.</div>
+                        <div class="cv-bef-para"><span class="cv-bef-bold">Software Engineer</span> — Infosys, Bangalore
+                            <span class="cv-bef-small">(Aug 2011 – May 2014)</span>
+                        </div>
+                        <div class="cv-bef-indent">• Worked on various projects related to insurance domain. Java, JSP,
+                            Servlets. Testing and bug fixing.</div>
+                        <div class="cv-bef-section">TECHNICAL SKILLS</div>
+                        <div class="cv-bef-para cv-bef-caps">Java · Python · SQL · JavaScript · Spring Boot · Hibernate
+                            · React · Git · JIRA · Jenkins · Oracle · MySQL</div>
+                        <div class="cv-bef-section">HOBBIES &amp; INTERESTS</div>
+                        <div class="cv-bef-para">Cricket, Reading technical books, Listening to music, Travelling with
+                            family</div>
+                        <div class="cv-bef-section">DECLARATION</div>
+                        <div class="cv-bef-para cv-bef-small">I hereby declare that all the information provided above
+                            is true and correct to the best of my knowledge and belief.</div>
+                    </div>
+
+                    <!-- AFTER: clean, flag-backed, revealed by scanner -->
+                    <div class="cv-after" id="cvAfter">
+                        <div class="cv-aft-flag" id="cvAftFlag"></div>
+                        <div class="cv-aft-overlay"></div>
+                        <div class="cv-aft-body">
+                            <div class="cv-aft-header">
+                                <div class="cv-aft-name">Rajesh Venkataraman</div>
+                                <div class="cv-aft-role" id="cvAftRole">Senior Software Engineer</div>
+                                <div class="cv-aft-contact">
+                                    <span class="cv-aft-tag" id="cvAftLocation">London, UK</span>
+                                    <span class="cv-aft-tag">rajesh@email.com</span>
+                                    <span class="cv-aft-tag">LinkedIn</span>
+                                </div>
+                            </div>
+                            <div class="cv-aft-divider"></div>
+                            <div class="cv-aft-section">Experience</div>
+                            <div class="cv-aft-role-title">Senior Software Engineer</div>
+                            <div class="cv-aft-company">Tata Consultancy Services · 2014 – Present</div>
+                            <ul class="cv-aft-bullets" id="cvAftBullets">
+                                <li>Architected Spring Boot microservices for banking platform, reducing latency 40%
+                                </li>
+                                <li>Led team of 6; CI/CD cut releases from 2 weeks to 2 days</li>
+                                <li>Q3 2022 Employee of the Quarter — client delivery excellence</li>
+                            </ul>
+                            <div class="cv-aft-divider"></div>
+                            <div class="cv-aft-section">Skills</div>
+                            <div class="cv-aft-skills" id="cvAftSkills">
+                                <span class="cv-aft-skill">Java</span><span class="cv-aft-skill">Spring Boot</span>
+                                <span class="cv-aft-skill">Python</span><span class="cv-aft-skill">React</span>
+                                <span class="cv-aft-skill">Oracle</span><span class="cv-aft-skill">AWS</span>
+                                <span class="cv-aft-skill">Jenkins</span><span class="cv-aft-skill">Agile</span>
+                            </div>
+                            <div class="cv-aft-pill" id="cvAftPill">
+                                <div class="cv-aft-dot"></div>
+                                <span id="cvAftPillText">ATS Optimised</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scanner line -->
+                    <div class="cv-scanner" id="cvScanner">
+                        <div class="cv-scanner-core" id="cvScannerCore"></div>
+                        <div class="cv-scanner-glow" id="cvScannerGlow"></div>
+                    </div>
+
+                </div><!-- /cv-doc -->
+
+                <div class="cv-page-badge">
+                    <span>Pages:</span>
+                    <span class="cv-pg-num" id="cvPgNum">3</span>
                 </div>
-                <div class="result-card">
-                    <div class="flag"><span class="fi fi-gb"></span></div>
-                    <div class="country">UK · CV Format</div>
-                    <div class="status">Optimised</div>
-                </div>
-                <div class="result-card">
-                    <div class="flag"><span class="fi fi-ca"></span></div>
-                    <div class="country">Canada · Express Entry</div>
-                    <div class="status">Optimised</div>
-                </div>
-                <div class="result-card">
-                    <div class="flag"><span class="fi fi-de"></span></div>
-                    <div class="country">Germany · CV Format</div>
-                    <div class="status">Optimised</div>
-                </div>
-                <div class="result-card">
-                    <div class="flag">🌐</div>
-                    <div class="country">Remote · Global</div>
-                    <div class="status">Optimised</div>
-                </div>
-                <div class="result-card">
-                    <div class="flag"><span class="fi fi-us"></span></div>
-                    <div class="country">USA · ATS-Ready</div>
-                    <div class="status">Optimised</div>
-                </div>
-            </div>
-        </div>
+            </div><!-- /cv-wrap -->
+
+        </div><!-- /hero-right -->
+
     </section>
 
     <!-- TESTIMONIALS -->
@@ -559,6 +648,7 @@
             <a href="gdpr.html">GDPR (EU)</a>
         </div>
     </footer>
+    <script src="hero.js?v=1"></script>
     <script src="script.js"></script>
 
 </body>

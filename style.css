@@ -81,7 +81,7 @@
             overflow: hidden;
         }
 
-        .hero::before {
+        /*.hero::before {
             content: '';
             position: absolute;
             inset: 0;
@@ -89,7 +89,8 @@
                 radial-gradient(ellipse 70% 60% at 80% 40%, rgba(10, 147, 150, 0.08) 0%, transparent 70%),
                 radial-gradient(ellipse 50% 50% at 20% 80%, rgba(233, 196, 106, 0.12) 0%, transparent 60%);
             pointer-events: none;
-        }
+            overflow: visible;
+        }*/
 
         .hero-eyebrow {
             display: inline-flex;
@@ -126,6 +127,21 @@
             color: var(--navy);
             margin-bottom: 24px;
             animation: fadeUp .6s .1s ease both;
+        }
+
+        .hero-h1 {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .hero-h1-line1 {
+            display: block;
+        }
+
+        .hero-h1-line2 {
+            display: block;
+            white-space: nowrap;
         }
 
         h1 em {
@@ -888,14 +904,9 @@
         }
 
         /* ─── RESPONSIVE ─── */
-        @media (max-width: 900px) {
+        @media (max-width: 1130px) {
             .hero {
-                grid-template-columns: 1fr;
                 padding: 100px 32px 60px;
-            }
-
-            .hero-visual {
-                display: none;
             }
 
             .problem-strip {
@@ -1461,4 +1472,500 @@
             background: #0A9396;
             border-radius: 50%;
             flex-shrink: 0;
+        }
+
+
+
+
+        .hero {
+            --cv-navy: #0F1E35;
+            --cv-teal: #0A9396;
+            --cv-teal2: #94D2BD;
+            --cv-muted: #5E7080;
+            --cv-border: #D8E4EC;
+            --cv-text: #1C2B3A;
+            --cv-sand: #E9C46A;
+        }
+
+        .hero {
+            display: flex;
+            justify-content: center;
+            gap: 200px;
+            padding: 100px 80px 72px;
+            margin-top: 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+            overflow: visible;
+        }
+
+        .hero-left {
+            flex: 1 1 50%;
+            min-width: 0;
+            max-width: 620px;
+        }
+
+        /* ── Slot machine (animated destination in headline) ── */
+        .cv-slot-wrap {
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            vertical-align: -0.21em;
+            /* Shift down to match baselines */
+        }
+
+        .cv-slot-track {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            will-change: transform;
+        }
+
+        .cv-slot-item {
+            font-family: inherit;
+            font-style: italic;
+            white-space: nowrap;
+            display: block;
+            text-align: left;
+        }
+
+        .cv-hl-slot-line {
+            display: inline;
+            white-space: nowrap;
+            overflow: visible;
+        }
+
+        /* ── Right: CV animation zone ── */
+        .hero-right {
+            flex: 0 1 440px;
+            min-width: 300px;
+            position: relative;
+            height: 520px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: visible;
+            padding: 0;
+        }
+
+        /* Floaters */
+        .cv-floater {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0;
+            z-index: 30;
+        }
+
+        .cv-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: #fff;
+            border: 1px solid var(--cv-border);
+            border-radius: 100px;
+            padding: 7px 14px;
+            font-size: .67rem;
+            font-weight: 600;
+            color: var(--cv-text);
+            box-shadow: 0 4px 18px rgba(15, 30, 53, .1);
+            white-space: nowrap;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .cv-chip-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .cv-orb {
+            border-radius: 50%;
+        }
+
+        /* CV document wrapper */
+        .cv-wrap {
+            position: relative;
+            margin: 0 auto;
+            width: 320px;
+            filter: drop-shadow(0 20px 48px rgba(15, 30, 53, .18)) drop-shadow(0 4px 12px rgba(15, 30, 53, .1));
+        }
+
+        .cv-doc {
+            position: relative;
+            width: 320px;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #e0eaf2;
+            box-sizing: border-box;
+        }
+
+        /* ── BEFORE layer ── */
+        .cv-before {
+            position: relative;
+            padding: 13px 14px;
+            z-index: 1;
+            font-family: Arial, sans-serif;
+        }
+
+        .cv-bef-name {
+            font-size: .72rem;
+            font-weight: 700;
+            color: #1C2B3A;
+            margin-bottom: 1px;
+            line-height: 1.3;
+        }
+
+        .cv-bef-contact {
+            font-size: .44rem;
+            color: #888;
+            margin-bottom: 5px;
+            line-height: 1.5;
+        }
+
+        .cv-bef-section {
+            font-size: .5rem;
+            font-weight: 700;
+            color: #1C2B3A;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            margin: 5px 0 2px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 2px;
+        }
+
+        .cv-bef-para {
+            font-size: .41rem;
+            color: #555;
+            line-height: 1.65;
+            margin-bottom: 2px;
+        }
+
+        .cv-bef-bold {
+            font-weight: 700;
+            color: #333;
+        }
+
+        .cv-bef-indent {
+            padding-left: 8px;
+            font-size: .41rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 2px;
+        }
+
+        .cv-bef-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2px;
+        }
+
+        .cv-bef-table td {
+            font-size: .38rem;
+            color: #666;
+            padding: 1px 3px;
+            border: 1px solid #eee;
+            vertical-align: top;
+        }
+
+        .cv-bef-small {
+            font-size: .38rem;
+            color: #999;
+            font-style: italic;
+        }
+
+        .cv-bef-underline {
+            text-decoration: underline;
+        }
+
+        .cv-bef-caps {
+            font-variant: small-caps;
+        }
+
+        /* ── AFTER layer (flag-backed, revealed by scanner) ── */
+        .cv-after {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            background: #0F1E35;
+            clip-path: inset(0 0 100% 0);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cv-aft-flag {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .cv-aft-flag svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+            opacity: .55;
+            filter: saturate(.85) brightness(.75);
+        }
+
+        .cv-aft-flag .cv-globe-bg {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #081d28, #0F1E35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 7rem;
+            opacity: .5;
+        }
+
+        .cv-aft-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(to bottom, rgba(10, 16, 28, .55) 0%, rgba(10, 16, 28, .3) 35%, rgba(10, 16, 28, .72) 70%, rgba(10, 16, 28, .95) 100%);
+        }
+
+        .cv-aft-body {
+            position: relative;
+            z-index: 2;
+            padding: 12px 14px 13px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .cv-aft-header {
+            margin-bottom: 7px;
+        }
+
+        .cv-aft-name {
+            font-family: 'DM Serif Display', serif;
+            font-size: .92rem;
+            font-weight: 400;
+            color: #fff;
+            line-height: 1.2;
+            margin-bottom: 2px;
+        }
+
+        .cv-aft-role {
+            font-size: .46rem;
+            font-weight: 600;
+            color: var(--cv-teal2);
+            letter-spacing: .07em;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .cv-aft-contact {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+
+        .cv-aft-tag {
+            font-size: .42rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, .6);
+            background: rgba(255, 255, 255, .1);
+            border: 1px solid rgba(255, 255, 255, .15);
+            border-radius: 4px;
+            padding: 2px 6px;
+        }
+
+        .cv-aft-divider {
+            height: 1px;
+            background: linear-gradient(to right, rgba(148, 210, 189, .4), transparent);
+            margin: 6px 0;
+        }
+
+        .cv-aft-section {
+            font-size: .44rem;
+            font-weight: 700;
+            color: var(--cv-teal2);
+            text-transform: uppercase;
+            letter-spacing: .09em;
+            margin-bottom: 4px;
+        }
+
+        .cv-aft-role-title {
+            font-size: .52rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, .92);
+            margin-bottom: 1px;
+        }
+
+        .cv-aft-company {
+            font-size: .42rem;
+            color: rgba(255, 255, 255, .45);
+            margin-bottom: 3px;
+        }
+
+        .cv-aft-bullets {
+            list-style: none;
+            margin-bottom: 5px;
+            flex: 1;
+        }
+
+        .cv-aft-bullets li {
+            font-size: .41rem;
+            color: rgba(255, 255, 255, .75);
+            line-height: 1.55;
+            padding-left: 10px;
+            position: relative;
+            margin-bottom: 2px;
+        }
+
+        .cv-aft-bullets li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--cv-teal2);
+            font-size: .48rem;
+        }
+
+        .cv-aft-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3px;
+            margin-bottom: 6px;
+        }
+
+        .cv-aft-skill {
+            font-size: .42rem;
+            font-weight: 500;
+            color: var(--cv-teal2);
+            background: rgba(10, 147, 150, .2);
+            border: 1px solid rgba(148, 210, 189, .25);
+            border-radius: 100px;
+            padding: 2px 7px;
+        }
+
+        .cv-aft-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(10, 147, 150, .25);
+            border: 1px solid rgba(148, 210, 189, .3);
+            border-radius: 100px;
+            padding: 3px 10px;
+            font-size: .46rem;
+            font-weight: 700;
+            color: var(--cv-teal2);
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            margin-top: auto;
+        }
+
+        .cv-aft-dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--cv-teal2);
+        }
+
+        /* Scanner line */
+        .cv-scanner {
+            position: absolute;
+            left: -2px;
+            right: -2px;
+            height: 3px;
+            z-index: 10;
+            pointer-events: none;
+            opacity: 0;
+            top: 0;
+            will-change: transform;
+        }
+
+        .cv-scanner-core {
+            position: absolute;
+            inset: 0;
+            border-radius: 2px;
+        }
+
+        .cv-scanner-glow {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 28px;
+            top: -13px;
+            border-radius: 4px;
+            pointer-events: none;
+        }
+
+        /* Page badge */
+        .cv-page-badge {
+            position: absolute;
+            bottom: -28px;
+            right: 0;
+            font-size: .55rem;
+            font-weight: 600;
+            color: var(--cv-muted);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .cv-page-badge .cv-pg-num {
+            font-size: .7rem;
+            font-weight: 700;
+            color: var(--cv-text);
+            transition: color .3s;
+        }
+
+        /* ── Mobile ── */
+        @media (max-width: 1130px) {
+            .hero {
+                flex-direction: column !important;
+                align-items: center;
+                gap: 60px;
+                /* Big padding between left and right */
+                padding: 100px 20px 64px;
+                margin-top: 80px;
+            }
+
+            .hero-left {
+                flex: 0 0 auto;
+                text-align: center;
+                max-width: 100%;
+            }
+
+            .hero-h1 {
+                align-items: center;
+            }
+
+            /* your existing .hero-sub, .form-row etc will centre naturally */
+            .form-row {
+                justify-content: center;
+            }
+
+            .counter {
+                justify-content: center;
+            }
+
+            .hero-right {
+                flex: 0 0 auto;
+                width: min(440px, 100%);
+                height: 480px;
+            }
+
+            .cv-wrap,
+            .cv-doc {
+                width: min(320px, calc(100vw - 80px));
+            }
+
+            .cv-floater.cv-chip {
+                display: none;
+            }
+
+            /* slot line can wrap on mobile */
+            .cv-hl-slot-line {
+                white-space: normal;
+            }
         }
